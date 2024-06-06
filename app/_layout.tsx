@@ -1,14 +1,17 @@
 import React from 'react';
 import { Stack } from 'expo-router';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { View } from 'react-native';
+import * as eva from '@eva-design/eva';
+import { ApplicationProvider, Layout, Text } from '@ui-kitten/components';
 
 export default function RootLayout() {
   return (
-    <SafeAreaProvider>
-      <Stack>
-        <Stack.Screen name='(tabs)' />
-      </Stack>
-    </SafeAreaProvider>
+    <ApplicationProvider {...eva} theme={eva.light}>
+      <SafeAreaProvider>
+        <Stack>
+          <Stack.Screen name='(tabs)' />
+        </Stack>
+      </SafeAreaProvider>
+    </ApplicationProvider>
   );
 }
