@@ -15,7 +15,7 @@
     },
     "dashboardProps": {
         "importantNotificationsTitle": "Important Notifications",
-        "navbarProps": {
+        "dashboardHeading": {
             "userPicPlaceholder": "/src/assets/userLogoPlaceholder.png",
             "mainLogo": "/src/assets/companyLogo.png",
             "greetingHeader": "Hi, \n"
