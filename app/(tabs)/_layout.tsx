@@ -11,18 +11,27 @@ export default function TabLayout() {
       <Tabs.Screen
         name='index'
         options={{
-          title: 'Home',
+          title: 'Dashboard',
           tabBarIcon: ({ color }) => (
             <FontAwesome size={28} name='home' color={color} />
           ),
         }}
       />
       <Tabs.Screen
+        name='notifications'
+        options={{
+          title: 'notifications',
+          tabBarIcon: ({ color }) => (
+            <FontAwesome size={28} name='bell' color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
         name='random'
         options={{
-          title: 'Random',
+          title: 'random',
           tabBarIcon: ({ color }) => (
-            <FontAwesome size={28} name='cog' color={color} />
+            <FontAwesome size={28} name='user' color={color} />
           ),
         }}
       />
