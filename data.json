@@ -1,0 +1,57 @@
+{
+    "theme": "cupcake",
+    "loginProps": {
+        "loginLogo": "/src/assets/companyLogo.png",
+        "loginLogoAltText": "My Courier Image",
+        "loginHeader": "Sign into DPI Driver",
+        "loginSlogan": "Performance Insights for Superior Service",
+        "loginEyeIconOn": "/src/assets/eyeIconOn.svg",
+        "loginEyeIconOff": "/src/assets/eyeIconOff.svg",
+        "loginUsernamePlaceholder": "Email or username",
+        "loginPasswordPlaceholder": "Password",
+        "loginButtonText": "Login",
+        "loginHidePasswordAltText": "Hide Password",
+        "loginShowPasswordAltText": "Show Password"
+    },
+    "dashboardProps": {
+        "importantNotificationsTitle": "Important Notifications",
+        "navbarProps": {
+            "userPicPlaceholder": "/src/assets/userLogoPlaceholder.png",
+            "mainLogo": "/src/assets/companyLogo.png",
+            "greetingHeader": "Hi, \n"
+        },
+        "cardNotificationProps": {
+            "notificationRedirectButton": "Go"
+        },
+        "performanceScoreProps": {
+            "mainTitle": "Performance Score",
+            "performanceGrading": {
+                "excellent": {
+                    "threshold": 100,
+                    "title": "Perfect!",
+                    "message": "You have completed all trainings!"
+                },
+                "veryGood": {
+                    "threshold": 85,
+                    "title": "Great job!",
+                    "message": "You are almost there!"
+                },
+                "good": {
+                    "threshold": 70,
+                    "title": "Good effort!",
+                    "message": "Keep going!"
+                },
+                "needsImprovement": {
+                    "threshold": 50,
+                    "title": "Needs Improvement",
+                    "message": "You need to work harder."
+                },
+                "poor": {
+                    "threshold": 30,
+                    "title": "Poor performance",
+                    "message": "You need significant improvement."
+                }
+            }
+        }
+    }
+}
