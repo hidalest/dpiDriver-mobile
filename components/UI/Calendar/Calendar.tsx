@@ -48,17 +48,20 @@ const Calendar: React.FC<CalendarProps> = () => {
     <View style={styles.container}>
       <Text style={styles.month}>{currentMonth}</Text>
       <View style={styles.week}>
+        <Button title='<' onPress={handleMoveBack} />
         {daysOfWeek.map((day) => (
           <View key={day.toString()} style={styles.day}>
             <Text>{format(day, 'EEE')}</Text>
             <Text>{format(day, 'd')}</Text>
           </View>
         ))}
+        {/* {!isCurrentWeek && <Button title='>' onPress={handleMoveForward} />} */}
+        <Button
+          title='>'
+          onPress={handleMoveForward}
+          disabled={isCurrentWeek}
+        />
       </View>
-      <Button title='Move Back One Week' onPress={handleMoveBack} />
-      {!isCurrentWeek && (
-        <Button title='Move Forward One Week' onPress={handleMoveForward} />
-      )}
     </View>
   );
 };
@@ -76,10 +79,13 @@ const styles = StyleSheet.create({
   week: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    width: 'auto',
     marginBottom: 16,
   },
   day: {
     alignItems: 'center',
+    marginLeft: 5,
+    marginRight: 5,
   },
 });
 
