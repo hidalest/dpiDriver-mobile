@@ -1,5 +1,5 @@
 import Calendar from '@/components/UI/Calendar/Calendar';
-import { Card } from '@ui-kitten/components';
+import { Card, CircularProgressBar } from '@ui-kitten/components';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { PerformanceScoreProps } from './Interface';

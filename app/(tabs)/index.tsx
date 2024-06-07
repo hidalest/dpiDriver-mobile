@@ -5,6 +5,7 @@ import data from '../../data.json';
 import DashboardHeading from '@/components/Dashboard/DashboardHeading/DashboardHeading';
 import { Card } from '@ui-kitten/components';
 import PerformanceIndicator from '@/components/Dashboard/PerformanceIndicator/PerformanceIndicator';
+import RadialProgress from '@/components/UI/RadialProgress/RadialProgress';
 
 export default function Index() {
   const { dashboardHeading, performanceScoreProps } = data.dashboardProps;
@@ -16,6 +17,7 @@ export default function Index() {
     <View style={(styles.container, { backgroundColor })}>
       <DashboardHeading {...dashboardHeading} />
       <PerformanceIndicator {...performanceScoreProps} />
+      <RadialProgress percentage={75} />
     </View>
   );
 }
