@@ -8,7 +8,8 @@ import {
 } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import data from '../../data.json';
-import DashboardHeading from '@/components/DashboardHeading/DashboardHeading';
+import DashboardHeading from '@/components/Dashboard/DashboardHeading/DashboardHeading';
+import { Card } from '@ui-kitten/components';
 
 export default function Index() {
   const { loginProps, dashboardProps } = data;
@@ -19,6 +20,14 @@ export default function Index() {
   return (
     <View style={(styles.container, { backgroundColor })}>
       <DashboardHeading {...dashboardProps.dashboardHeading} />
+      <Card>
+        <Text>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero
+          explicabo placeat aspernatur tenetur id rerum similique ratione
+          reiciendis adipisci omnis eaque nulla aut autem beatae at accusamus
+          aliquam, assumenda laborum.
+        </Text>
+      </Card>
     </View>
   );
 }
@@ -26,6 +35,9 @@ export default function Index() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+  },
+  heading: {
+    fontSize: 24,
+    fontWeight: 'bold',
   },
 });
