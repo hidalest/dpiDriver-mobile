@@ -11,14 +11,38 @@ import {
   isSameWeek,
 } from 'date-fns';
 
+/**
+ * Props for the Calendar component.
+ */
 type CalendarProps = {};
 
+/**
+ * Calendar component displays a week view with navigation buttons to move between weeks.
+ *
+ * @component
+ * @example
+ * return (
+ *   <Calendar />
+ * )
+ */
 const Calendar: React.FC<CalendarProps> = () => {
   const [currentDate, setCurrentDate] = useState<Date>(new Date());
 
+  /**
+   * Get the start of the week for a given date.
+   *
+   * @param {Date} date - The date for which to find the start of the week.
+   * @returns {Date} The start of the week.
+   */
   const getStartOfWeek = (date: Date): Date =>
     startOfWeek(date, { weekStartsOn: 0 });
 
+  /**
+   * Get all days of the week for a given date.
+   *
+   * @param {Date} date - The date for which to find the days of the week.
+   * @returns {Date[]} An array of dates representing the days of the week.
+   */
   const getDaysOfWeek = (date: Date): Date[] => {
     const startOfWeekDate = getStartOfWeek(date);
     return eachDayOfInterval({
@@ -27,10 +51,17 @@ const Calendar: React.FC<CalendarProps> = () => {
     });
   };
 
+  /**
+   * Handle moving to the previous week.
+   */
   const handleMoveBack = (): void => {
     setCurrentDate((prevDate) => subWeeks(prevDate, 1));
   };
 
+  /**
+   * Handle moving to the next week.
+   * Ensures not to move past the current week.
+   */
   const handleMoveForward = (): void => {
     setCurrentDate((prevDate) => {
       const nextWeek = addWeeks(prevDate, 1);
@@ -55,7 +86,6 @@ const Calendar: React.FC<CalendarProps> = () => {
             <Text>{format(day, 'd')}</Text>
           </View>
         ))}
-        {/* {!isCurrentWeek && <Button title='>' onPress={handleMoveForward} />} */}
         <Button
           title='>'
           onPress={handleMoveForward}

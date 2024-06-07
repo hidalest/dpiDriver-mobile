@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
   },
   radial: {
     margin: 'auto',
+    marginBottom: 30,
   },
 });
 
