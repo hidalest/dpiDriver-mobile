@@ -7,8 +7,8 @@ function PerformanceIndicator() {
   return (
     <View style={styles.container}>
       <Card>
-        <Calendar />
         <Text style={styles.heading}>Performance Indicator</Text>
+        <Calendar />
         <Text>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero
           explicabo placeat aspernatur tenetur id rerum similique ratione

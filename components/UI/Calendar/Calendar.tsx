@@ -5,20 +5,20 @@ import {
   startOfWeek,
   addDays,
   subWeeks,
+  addWeeks,
   eachDayOfInterval,
+  isAfter,
+  isSameWeek,
 } from 'date-fns';
 
-// Define the types for the props (if any) and state
 type CalendarProps = {};
 
 const Calendar: React.FC<CalendarProps> = () => {
   const [currentDate, setCurrentDate] = useState<Date>(new Date());
 
-  // Function to get the start of the week
   const getStartOfWeek = (date: Date): Date =>
-    startOfWeek(date, { weekStartsOn: 1 });
+    startOfWeek(date, { weekStartsOn: 0 });
 
-  // Function to get the days of the week
   const getDaysOfWeek = (date: Date): Date[] => {
     const startOfWeekDate = getStartOfWeek(date);
     return eachDayOfInterval({
@@ -27,15 +27,26 @@ const Calendar: React.FC<CalendarProps> = () => {
     });
   };
 
-  // Function to handle moving one week back
   const handleMoveBack = (): void => {
     setCurrentDate((prevDate) => subWeeks(prevDate, 1));
   };
 
+  const handleMoveForward = (): void => {
+    setCurrentDate((prevDate) => {
+      const nextWeek = addWeeks(prevDate, 1);
+      return isAfter(nextWeek, new Date()) ? prevDate : nextWeek;
+    });
+  };
+
   const daysOfWeek = getDaysOfWeek(currentDate);
+  const currentMonth = format(currentDate, 'MMMM');
+  const isCurrentWeek = isSameWeek(currentDate, new Date(), {
+    weekStartsOn: 0,
+  });
 
   return (
     <View style={styles.container}>
+      <Text style={styles.month}>{currentMonth}</Text>
       <View style={styles.week}>
         {daysOfWeek.map((day) => (
           <View key={day.toString()} style={styles.day}>
@@ -45,6 +56,9 @@ const Calendar: React.FC<CalendarProps> = () => {
         ))}
       </View>
       <Button title='Move Back One Week' onPress={handleMoveBack} />
+      {!isCurrentWeek && (
+        <Button title='Move Forward One Week' onPress={handleMoveForward} />
+      )}
     </View>
   );
 };
@@ -53,6 +67,11 @@ const styles = StyleSheet.create({
   container: {
     padding: 16,
     alignItems: 'center',
+  },
+  month: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 16,
   },
   week: {
     flexDirection: 'row',
