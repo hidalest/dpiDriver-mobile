@@ -20,7 +20,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name='notifications'
         options={{
-          title: 'notifications',
+          title: 'Notifications',
           tabBarIcon: ({ color }) => (
             <FontAwesome size={28} name='bell' color={color} />
           ),
@@ -29,7 +29,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name='random'
         options={{
-          title: 'random',
+          title: 'Random',
           tabBarIcon: ({ color }) => (
             <FontAwesome size={28} name='user' color={color} />
           ),
