@@ -7,7 +7,7 @@ import { Card } from '@ui-kitten/components';
 import PerformanceIndicator from '@/components/Dashboard/PerformanceIndicator/PerformanceIndicator';
 
 export default function Index() {
-  const { dashboardHeading } = data.dashboardProps;
+  const { dashboardHeading, performanceScoreProps } = data.dashboardProps;
   const colorScheme = useColorScheme(); // Get the current color scheme
 
   // Define the background color based on the color scheme
@@ -15,7 +15,7 @@ export default function Index() {
   return (
     <View style={(styles.container, { backgroundColor })}>
       <DashboardHeading {...dashboardHeading} />
-      <PerformanceIndicator />
+      <PerformanceIndicator {...performanceScoreProps} />
     </View>
   );
 }

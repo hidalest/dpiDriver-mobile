@@ -2,12 +2,14 @@ import Calendar from '@/components/UI/Calendar/Calendar';
 import { Card } from '@ui-kitten/components';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { PerformanceScoreProps } from './Interface';
 
-function PerformanceIndicator() {
+function PerformanceIndicator(props: PerformanceScoreProps) {
+  const { mainTitle } = props;
   return (
     <View style={styles.container}>
       <Card>
-        <Text style={styles.heading}>Performance Indicator</Text>
+        <Text style={styles.heading}>{mainTitle}</Text>
         <Calendar />
         <Text>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero
