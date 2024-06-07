@@ -17,7 +17,6 @@ export default function Index() {
     <View style={(styles.container, { backgroundColor })}>
       <DashboardHeading {...dashboardHeading} />
       <PerformanceIndicator {...performanceScoreProps} />
-      <RadialProgress percentage={75} />
     </View>
   );
 }

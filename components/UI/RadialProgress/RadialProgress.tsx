@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import Svg, { Circle, Rect } from 'react-native-svg';
+import { View, Text, StyleSheet, ViewStyle } from 'react-native';
+import Svg, { Circle } from 'react-native-svg';
 
 interface RadialProgressProps {
   percentage: number;
@@ -8,6 +8,7 @@ interface RadialProgressProps {
   strokeWidth?: number;
   color?: string;
   backgroundColor?: string;
+  style?: ViewStyle;
 }
 
 const RadialProgress = ({
@@ -16,13 +17,14 @@ const RadialProgress = ({
   strokeWidth = 10,
   color = 'blue',
   backgroundColor = '#e6e6e6',
+  style,
 }: RadialProgressProps) => {
   const radius = (size - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
-  const strokeDashoffset = circumference - (percentage / 100) * circumference;
+  const strokeDashoffset = circumference * (1 - percentage / 100);
 
   return (
-    <View style={[styles.container, { width: size, height: size }]}>
+    <View style={[styles.container, { width: size, height: size }, style]}>
       <Svg height={size} width={size}>
         <Circle
           stroke={backgroundColor}
@@ -42,6 +44,7 @@ const RadialProgress = ({
           strokeDasharray={circumference}
           strokeDashoffset={strokeDashoffset}
           strokeLinecap='round'
+          transform={`rotate(-90 ${size / 2} ${size / 2})`}
         />
       </Svg>
       <View style={styles.textContainer}>

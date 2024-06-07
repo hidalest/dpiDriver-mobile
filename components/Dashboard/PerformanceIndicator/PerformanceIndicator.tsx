@@ -3,6 +3,7 @@ import { Card, CircularProgressBar } from '@ui-kitten/components';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { PerformanceScoreProps } from './Interface';
+import RadialProgress from '@/components/UI/RadialProgress/RadialProgress';
 
 function PerformanceIndicator(props: PerformanceScoreProps) {
   const { mainTitle } = props;
@@ -11,6 +12,7 @@ function PerformanceIndicator(props: PerformanceScoreProps) {
       <Card>
         <Text style={styles.heading}>{mainTitle}</Text>
         <Calendar />
+        <RadialProgress percentage={30} style={styles.radial} />
         <Text>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero
           explicabo placeat aspernatur tenetur id rerum similique ratione
@@ -29,6 +31,9 @@ const styles = StyleSheet.create({
   heading: {
     fontSize: 20,
     fontWeight: 'bold',
+  },
+  radial: {
+    margin: 'auto',
   },
 });
 
