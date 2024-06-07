@@ -1,12 +1,14 @@
+import Calendar from '@/components/UI/Calendar/Calendar';
 import { Card } from '@ui-kitten/components';
 import React from 'react';
-import { Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 function PerformanceIndicator() {
   return (
-    <View>
-      <Text>Performance Indicator</Text>
+    <View style={styles.container}>
       <Card>
+        <Calendar />
+        <Text style={styles.heading}>Performance Indicator</Text>
         <Text>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero
           explicabo placeat aspernatur tenetur id rerum similique ratione
@@ -17,5 +19,15 @@ function PerformanceIndicator() {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    // flex: 1,
+  },
+  heading: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+});
 
 export default PerformanceIndicator;
