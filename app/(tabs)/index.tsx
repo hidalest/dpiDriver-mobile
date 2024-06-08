@@ -1,11 +1,9 @@
 import React from 'react';
-import { View, StyleSheet, useColorScheme } from 'react-native';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import data from '../../data.json';
+import { View, StyleSheet, useColorScheme, ScrollView } from 'react-native';
 import DashboardHeading from '@/components/Dashboard/DashboardHeading/DashboardHeading';
-import { Card } from '@ui-kitten/components';
 import PerformanceIndicator from '@/components/Dashboard/PerformanceIndicator/PerformanceIndicator';
-import RadialProgress from '@/components/UI/RadialProgress/RadialProgress';
+
+import data from '../../data.json';
 
 export default function Index() {
   const { dashboardHeading, performanceScoreProps } = data.dashboardProps;
@@ -15,8 +13,10 @@ export default function Index() {
   const backgroundColor = colorScheme === 'dark' ? 'black' : 'white';
   return (
     <View style={(styles.container, { backgroundColor })}>
-      <DashboardHeading {...dashboardHeading} />
-      <PerformanceIndicator {...performanceScoreProps} />
+      <ScrollView>
+        <DashboardHeading {...dashboardHeading} />
+        <PerformanceIndicator {...performanceScoreProps} progressScore={75} />
+      </ScrollView>
     </View>
   );
 }
