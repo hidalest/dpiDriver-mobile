@@ -12,6 +12,7 @@ export default function TabLayout() {
         name='index'
         options={{
           title: 'Dashboard',
+          headerShown: false,
           tabBarIcon: ({ color }) => (
             <FontAwesome size={28} name='home' color={color} />
           ),
@@ -20,6 +21,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name='notifications'
         options={{
+          headerShown: false,
           title: 'Notifications',
           tabBarIcon: ({ color }) => (
             <FontAwesome size={28} name='bell' color={color} />
@@ -30,6 +32,7 @@ export default function TabLayout() {
         name='random'
         options={{
           title: 'Random',
+          headerShown: false,
           tabBarIcon: ({ color }) => (
             <FontAwesome size={28} name='user' color={color} />
           ),
@@ -38,6 +41,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name='settings'
         options={{
+          headerShown: false,
           title: 'Settings',
           tabBarIcon: ({ color }) => (
             <FontAwesome size={28} name='cog' color={color} />

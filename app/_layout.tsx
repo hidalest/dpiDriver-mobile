@@ -9,7 +9,14 @@ export default function RootLayout() {
     <ApplicationProvider {...eva} theme={eva.light}>
       <SafeAreaProvider>
         <Stack>
-          <Stack.Screen name='(tabs)' />
+          <Stack.Screen
+            name='(tabs)'
+            options={{
+              headerTitle: 'My Courier',
+              headerBackButtonMenuEnabled: false,
+              headerBackVisible: false,
+            }}
+          />
         </Stack>
       </SafeAreaProvider>
     </ApplicationProvider>
