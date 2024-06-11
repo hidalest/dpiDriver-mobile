@@ -24,34 +24,309 @@
             "notificationRedirectButton": "Go"
         },
         "performanceScoreProps": {
-            "mainTitle": "Performance Score",
-            "performanceGrading": {
-                "excellent": {
-                    "threshold": 100,
-                    "title": "Perfect!",
-                    "message": "You have completed all trainings!"
+            "mainTitle": "Performance",
+            "performanceGrading": [
+                {
+                    "name": "Delivery Completion Rate",
+                    "abbreviation": "DCR",
+                    "thresholds": [
+                        {
+                            "condition": ">= 99",
+                            "title": "Great Score!",
+                            "message": "You have an Excellent Score!",
+                            "color": "#4F81BD"
+                        },
+                        {
+                            "condition": ">= 98",
+                            "title": "Good Score!",
+                            "message": "You have a Good Score!",
+                            "color": "#9BBB59"
+                        },
+                        {
+                            "condition": ">= 97",
+                            "title": "Medium Score",
+                            "message": "Your Score is Medium.",
+                            "color": "#F8C146"
+                        },
+                        {
+                            "condition": "< 97",
+                            "title": "Bad Score for DCR",
+                            "message": "Your Score is Bad.",
+                            "color": "#C0504D"
+                        }
+                    ]
                 },
-                "veryGood": {
-                    "threshold": 85,
-                    "title": "Great job!",
-                    "message": "You are almost there!"
+                {
+                    "name": "Delivery Success Behaviors",
+                    "abbreviation": "DSB",
+                    "thresholds": [
+                        {
+                            "condition": "< 200",
+                            "title": "Great Score!",
+                            "message": "Excellent behavior!",
+                            "color": "#4F81BD"
+                        },
+                        {
+                            "condition": ">= 200 && < 600",
+                            "title": "Good Score!",
+                            "message": "Good behavior.",
+                            "color": "#9BBB59"
+                        },
+                        {
+                            "condition": ">= 600 && < 1000",
+                            "title": "Medium Score",
+                            "message": "Needs improvement.",
+                            "color": "#F8C146"
+                        },
+                        {
+                            "condition": ">= 1000",
+                            "title": "Bad Score",
+                            "message": "Poor behavior.",
+                            "color": "#C0504D"
+                        }
+                    ]
                 },
-                "good": {
-                    "threshold": 70,
-                    "title": "Good effort!",
-                    "message": "Keep going!"
+                {
+                    "name": "Photo On Delivery",
+                    "abbreviation": "POD",
+                    "thresholds": [
+                        {
+                            "condition": ">= 98",
+                            "title": "Great Score!",
+                            "message": "Excellent!",
+                            "color": "#4F81BD"
+                        },
+                        {
+                            "condition": ">= 97",
+                            "title": "Good Score!",
+                            "message": "Good job!",
+                            "color": "#9BBB59"
+                        },
+                        {
+                            "condition": ">= 96",
+                            "title": "Medium Score",
+                            "message": "Needs some work.",
+                            "color": "#F8C146"
+                        },
+                        {
+                            "condition": "< 96",
+                            "title": "Bad Score",
+                            "message": "Needs significant improvement.",
+                            "color": "#C0504D"
+                        }
+                    ]
                 },
-                "needsImprovement": {
-                    "threshold": 50,
-                    "title": "Needs Improvement",
-                    "message": "You need to work harder."
+                {
+                    "name": "Contact Compliance",
+                    "abbreviation": "CC",
+                    "thresholds": [
+                        {
+                            "condition": ">= 99.5",
+                            "title": "Great Score!",
+                            "message": "Perfect compliance!",
+                            "color": "#4F81BD"
+                        },
+                        {
+                            "condition": ">= 98.5",
+                            "title": "Good Score!",
+                            "message": "Good compliance!",
+                            "color": "#9BBB59"
+                        },
+                        {
+                            "condition": ">= 97.5",
+                            "title": "Medium Score",
+                            "message": "Needs improvement.",
+                            "color": "#F8C146"
+                        },
+                        {
+                            "condition": "< 97.5",
+                            "title": "Bad Score",
+                            "message": "Poor compliance.",
+                            "color": "#C0504D"
+                        }
+                    ]
                 },
-                "poor": {
-                    "threshold": 30,
-                    "title": "Poor performance",
-                    "message": "You need significant improvement."
+                {
+                    "name": "Scan Compliance",
+                    "abbreviation": "SC",
+                    "thresholds": [
+                        {
+                            "condition": "== 0",
+                            "title": "Great Score!",
+                            "message": "Perfect compliance!",
+                            "color": "#4F81BD"
+                        },
+                        {
+                            "condition": ">= 98",
+                            "title": "Good Score!",
+                            "message": "Good compliance!",
+                            "color": "#9BBB59"
+                        },
+                        {
+                            "condition": ">= 97.5",
+                            "title": "Medium Score",
+                            "message": "Needs improvement.",
+                            "color": "#F8C146"
+                        },
+                        {
+                            "condition": ">= 1",
+                            "title": "Bad Score",
+                            "message": "Poor compliance.",
+                            "color": "#C0504D"
+                        }
+                    ]
+                },
+                {
+                    "name": "Customer Escalation Defect",
+                    "abbreviation": "CED",
+                    "thresholds": [
+                        {
+                            "condition": "== 0",
+                            "title": "Great Score!",
+                            "message": "Perfect!",
+                            "color": "#4F81BD"
+                        },
+                        {
+                            "condition": ">= 98.5",
+                            "title": "Good Score!",
+                            "message": "Good!",
+                            "color": "#9BBB59"
+                        },
+                        {
+                            "condition": ">= 97.5",
+                            "title": "Medium Score",
+                            "message": "Needs improvement.",
+                            "color": "#F8C146"
+                        },
+                        {
+                            "condition": ">= 1",
+                            "title": "Bad Score",
+                            "message": "Poor compliance.",
+                            "color": "#C0504D"
+                        }
+                    ]
+                },
+                {
+                    "name": "High Performance in Weeks",
+                    "abbreviation": "HP6W",
+                    "thresholds": [
+                        {
+                            "condition": ">= 4",
+                            "title": "Great Score!",
+                            "message": "Perfect compliance!",
+                            "color": "#4F81BD"
+                        },
+                        {
+                            "condition": ">= 3",
+                            "title": "Good Score!",
+                            "message": "Good compliance!",
+                            "color": "#9BBB59"
+                        },
+                        {
+                            "condition": ">= 2",
+                            "title": "Medium Score",
+                            "message": "Needs improvement.",
+                            "color": "#F8C146"
+                        },
+                        {
+                            "condition": "<= 1",
+                            "title": "Bad Score",
+                            "message": "Poor compliance.",
+                            "color": "#C0504D"
+                        }
+                    ]
+                },
+                {
+                    "name": "Rescues",
+                    "abbreviation": "Rescues",
+                    "thresholds": [
+                        {
+                            "condition": ">= 1",
+                            "title": "Great Score!",
+                            "message": "Perfect compliance!",
+                            "color": "#4F81BD"
+                        },
+                        {
+                            "condition": ">= 0.8",
+                            "title": "Good Score!",
+                            "message": "Good compliance!",
+                            "color": "#9BBB59"
+                        },
+                        {
+                            "condition": ">= 0.5",
+                            "title": "Medium Score",
+                            "message": "Needs improvement.",
+                            "color": "#F8C146"
+                        },
+                        {
+                            "condition": "== 0",
+                            "title": "Bad Score",
+                            "message": "Poor compliance.",
+                            "color": "#C0504D"
+                        }
+                    ]
+                },
+                {
+                    "name": "Morning Checklists",
+                    "abbreviation": "MC",
+                    "thresholds": [
+                        {
+                            "condition": "== 100",
+                            "title": "Great Score!",
+                            "message": "Perfect compliance!",
+                            "color": "#4F81BD"
+                        },
+                        {
+                            "condition": ">= 80",
+                            "title": "Good Score!",
+                            "message": "Good compliance!",
+                            "color": "#9BBB59"
+                        },
+                        {
+                            "condition": ">= 50",
+                            "title": "Medium Score",
+                            "message": "Needs improvement.",
+                            "color": "#F8C146"
+                        },
+                        {
+                            "condition": "< 50",
+                            "title": "Bad Score",
+                            "message": "Poor compliance.",
+                            "color": "#C0504D"
+                        }
+                    ]
+                },
+                {
+                    "name": "Online Attendance",
+                    "abbreviation": "OA",
+                    "thresholds": [
+                        {
+                            "condition": ">= 100",
+                            "title": "Great Score!",
+                            "message": "Perfect compliance!",
+                            "color": "#4F81BD"
+                        },
+                        {
+                            "condition": ">= 91",
+                            "title": "Good Score!",
+                            "message": "Good compliance!",
+                            "color": "#9BBB59"
+                        },
+                        {
+                            "condition": "== 90",
+                            "title": "Medium Score",
+                            "message": "Needs improvement.",
+                            "color": "#F8C146"
+                        },
+                        {
+                            "condition": "<= 90",
+                            "title": "Bad Score",
+                            "message": "Poor compliance.",
+                            "color": "#C0504D"
+                        }
+                    ]
                 }
-            }
+            ]
         }
     }
 }

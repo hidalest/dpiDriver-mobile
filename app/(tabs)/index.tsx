@@ -1,24 +1,22 @@
 import React from 'react';
-import {
-  ImageBackground,
-  Text,
-  View,
-  StyleSheet,
-  useColorScheme,
-} from 'react-native';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { View, StyleSheet, useColorScheme, ScrollView } from 'react-native';
+import DashboardHeading from '@/components/Dashboard/DashboardHeading/DashboardHeading';
+import PerformanceIndicator from '@/components/Dashboard/PerformanceIndicator/PerformanceIndicator';
+
 import data from '../../data.json';
-import DashboardHeading from '@/components/DashboardHeading/DashboardHeading';
 
 export default function Index() {
-  const { loginProps, dashboardProps } = data;
+  const { dashboardHeading, performanceScoreProps } = data.dashboardProps;
   const colorScheme = useColorScheme(); // Get the current color scheme
 
   // Define the background color based on the color scheme
   const backgroundColor = colorScheme === 'dark' ? 'black' : 'white';
   return (
     <View style={(styles.container, { backgroundColor })}>
-      <DashboardHeading {...dashboardProps.dashboardHeading} />
+      <ScrollView>
+        <DashboardHeading {...dashboardHeading} />
+        <PerformanceIndicator {...performanceScoreProps} progressScore={75} />
+      </ScrollView>
     </View>
   );
 }
@@ -26,6 +24,9 @@ export default function Index() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+  },
+  heading: {
+    fontSize: 24,
+    fontWeight: 'bold',
   },
 });
