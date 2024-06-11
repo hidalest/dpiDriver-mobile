@@ -9,7 +9,7 @@ export default function TabLayout() {
       }}
     >
       <Tabs.Screen
-        name='index'
+        name='dashboard'
         options={{
           title: 'Dashboard',
           headerShown: false,
