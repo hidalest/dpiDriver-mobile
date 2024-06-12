@@ -5,7 +5,7 @@ import PerformanceIndicator from '@/components/Dashboard/PerformanceIndicator/Pe
 
 import data from '../../data.json';
 
-export default function Index() {
+export default function Dashboard() {
   const { dashboardHeading, performanceScoreProps } = data.dashboardProps;
   const colorScheme = useColorScheme(); // Get the current color scheme
 
