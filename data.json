@@ -1,7 +1,7 @@
 {
     "theme": "cupcake",
     "loginProps": {
-        "loginLogo": "/src/assets/companyLogo.png",
+        "loginLogo": "/src/assets/companylogo.png",
         "loginLogoAltText": "My Courier Image",
         "loginHeader": "Sign into DPI Driver",
         "loginSlogan": "Performance Insights for Superior Service",
@@ -17,7 +17,7 @@
         "importantNotificationsTitle": "Important Notifications",
         "dashboardHeading": {
             "userPicPlaceholder": "/src/assets/userLogoPlaceholder.png",
-            "mainLogo": "/src/assets/companyLogo.png",
+            "mainLogo": "/src/assets/companylogo.png",
             "greetingHeader": "Hi, "
         },
         "cardNotificationProps": {

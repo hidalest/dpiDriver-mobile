@@ -4,11 +4,11 @@
     "slug": "dpiDriver-Mobile",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/companyLogo.png",
+    "icon": "./assets/images/companylogo.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "splash": {
-      "image": "./assets/images/companyLogo.png",
+      "image": "./assets/images/companylogo.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -20,7 +20,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.hidalest.dpiDriverMobile"
     },
     "web": {
       "bundler": "metro",
@@ -32,7 +33,9 @@
       [
         "expo-asset",
         {
-          "assets": ["./assets/images/companyLogo.png"]
+          "assets": [
+            "./assets/images/companylogo.png"
+          ]
         }
       ]
     ],
