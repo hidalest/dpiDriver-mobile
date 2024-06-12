@@ -1,0 +1,52 @@
+{
+    "trainingVideos": {
+        "dcr": [
+            {
+                "id": 1,
+                "link": "https://www.youtube.com/"
+            },
+            {
+                "id": 2,
+                "link": "https://www.youtube.com/"
+            },
+            {
+                "id": 3,
+                "link": "https://www.youtube.com/"
+            }
+        ],
+        "dsb": [
+            {
+                "id": 1,
+                "link": "https://www.youtube.com/"
+            },
+            {
+                "id": 2,
+                "link": "https://www.youtube.com/"
+            },
+            {
+                "id": 3,
+                "link": "https://www.youtube.com/"
+            }
+        ]
+    },
+    "users": [
+        {
+            "user": "User1",
+            "password": "password",
+            "fullName": "Full User Name",
+            "role": "driver",
+            "kpi": {
+                "dcr": 86,
+                "dsb": 86,
+                "pod": 86,
+                "cc": 86,
+                "sc": 86,
+                "ced": 86,
+                "hp6w": 86,
+                "rescues": 86,
+                "mc": 86,
+                "oa": 86
+            }
+        }
+    ]
+}
