@@ -33,25 +33,25 @@
                         {
                             "condition": ">= 99",
                             "title": "Great Score!",
-                            "message": "You have an Excellent Score!",
+                            "message": "Ex id aliqua aliquip amet ullamco minim nostrud voluptate incididunt.",
                             "color": "#4F81BD"
                         },
                         {
                             "condition": ">= 98",
                             "title": "Good Score!",
-                            "message": "You have a Good Score!",
+                            "message": "Ex id aliqua aliquip amet ullamco minim nostrud voluptate incididunt.",
                             "color": "#9BBB59"
                         },
                         {
                             "condition": ">= 97",
                             "title": "Medium Score",
-                            "message": "Your Score is Medium.",
+                            "message": "Ex id aliqua aliquip amet ullamco minim nostrud voluptate incididunt.",
                             "color": "#F8C146"
                         },
                         {
                             "condition": "< 97",
                             "title": "Bad Score for DCR",
-                            "message": "Your Score is Bad.",
+                            "message": "Ex id aliqua aliquip amet ullamco minim nostrud voluptate incididunt.",
                             "color": "#C0504D"
                         }
                     ]
@@ -63,25 +63,25 @@
                         {
                             "condition": "< 200",
                             "title": "Great Score!",
-                            "message": "Excellent behavior!",
+                            "message": "Ex id aliqua aliquip amet ullamco minim nostrud voluptate incididunt.",
                             "color": "#4F81BD"
                         },
                         {
                             "condition": ">= 200 && < 600",
                             "title": "Good Score!",
-                            "message": "Good behavior.",
+                            "message": "Ex id aliqua aliquip amet ullamco minim nostrud voluptate incididunt.",
                             "color": "#9BBB59"
                         },
                         {
                             "condition": ">= 600 && < 1000",
                             "title": "Medium Score",
-                            "message": "Needs improvement.",
+                            "message": "Ex id aliqua aliquip amet ullamco minim nostrud voluptate incididunt.",
                             "color": "#F8C146"
                         },
                         {
                             "condition": ">= 1000",
                             "title": "Bad Score",
-                            "message": "Poor behavior.",
+                            "message": "Ex id aliqua aliquip amet ullamco minim nostrud voluptate incididunt.",
                             "color": "#C0504D"
                         }
                     ]
@@ -93,25 +93,25 @@
                         {
                             "condition": ">= 98",
                             "title": "Great Score!",
-                            "message": "Excellent!",
+                            "message": "Ex id aliqua aliquip amet ullamco minim nostrud voluptate incididunt.",
                             "color": "#4F81BD"
                         },
                         {
                             "condition": ">= 97",
                             "title": "Good Score!",
-                            "message": "Good job!",
+                            "message": "Ex id aliqua aliquip amet ullamco minim nostrud voluptate incididunt.",
                             "color": "#9BBB59"
                         },
                         {
                             "condition": ">= 96",
                             "title": "Medium Score",
-                            "message": "Needs some work.",
+                            "message": "Ex id aliqua aliquip amet ullamco minim nostrud voluptate incididunt.",
                             "color": "#F8C146"
                         },
                         {
                             "condition": "< 96",
                             "title": "Bad Score",
-                            "message": "Needs significant improvement.",
+                            "message": "Ex id aliqua aliquip amet ullamco minim nostrud voluptate incididunt.",
                             "color": "#C0504D"
                         }
                     ]
@@ -123,25 +123,25 @@
                         {
                             "condition": ">= 99.5",
                             "title": "Great Score!",
-                            "message": "Perfect compliance!",
+                            "message": "Ex id aliqua aliquip amet ullamco minim nostrud voluptate incididunt.",
                             "color": "#4F81BD"
                         },
                         {
                             "condition": ">= 98.5",
                             "title": "Good Score!",
-                            "message": "Good compliance!",
+                            "message": "Ex id aliqua aliquip amet ullamco minim nostrud voluptate incididunt.",
                             "color": "#9BBB59"
                         },
                         {
                             "condition": ">= 97.5",
                             "title": "Medium Score",
-                            "message": "Needs improvement.",
+                            "message": "Ex id aliqua aliquip amet ullamco minim nostrud voluptate incididunt.",
                             "color": "#F8C146"
                         },
                         {
                             "condition": "< 97.5",
                             "title": "Bad Score",
-                            "message": "Poor compliance.",
+                            "message": "Ex id aliqua aliquip amet ullamco minim nostrud voluptate incididunt.",
                             "color": "#C0504D"
                         }
                     ]
@@ -153,13 +153,13 @@
                         {
                             "condition": "== 0",
                             "title": "Great Score!",
-                            "message": "Perfect compliance!",
+                            "message": "Ex id aliqua aliquip amet ullamco minim nostrud voluptate incididunt.",
                             "color": "#4F81BD"
                         },
                         {
                             "condition": ">= 98",
                             "title": "Good Score!",
-                            "message": "Good compliance!",
+                            "message": "Ex id aliqua aliquip amet ullamco minim nostrud voluptate incididunt.",
                             "color": "#9BBB59"
                         },
                         {
@@ -327,6 +327,18 @@
                     ]
                 }
             ]
-        }
+        },
+        "newsNotificationsProps": [
+            {
+                "id": 1,
+                "title": "News One",
+                "description": "Quis ipsum ex voluptate aute reprehenderit labore culpa excepteur consequat minim excepteur est veniam consequat."
+            },
+            {
+                "id": 2,
+                "title": "News Two",
+                "description": "Quis ipsum ex voluptate aute reprehenderit labore culpa excepteur consequat minim excepteur est veniam consequat."
+            }
+        ]
     }
 }
