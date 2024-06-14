@@ -1,14 +1,19 @@
 import { CommonActions } from '@react-navigation/native';
-import { Button } from '@ui-kitten/components';
 import { Link, useNavigation } from 'expo-router';
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
+import Login from '@/components/Login/Login';
+import data from '../data.json';
 
 const LoginScreen = () => {
+  const {} = data.loginProps
+
   const navigation = useNavigation();
 
-  const handleLogin = () => {
+  const handleSignIn = (username: string, password: string): void => {
     // Perform login logic here
+    console.log(username)
+    console.log(password)
 
     // After successful login, reset the navigation stack and navigate to the dashboard
     navigation.dispatch(
@@ -18,11 +23,12 @@ const LoginScreen = () => {
       })
     );
   };
+
+
   return (
     <View style={styles.container}>
-      <Text>Login Screen</Text>
-      {/* Add login form components here */}
-      <Button onPress={handleLogin}>Sign In</Button>
+        {/* Add login form components here */}
+        <Login onSignIn={handleSignIn} {...data.loginProps} />
     </View>
   );
 };
@@ -32,7 +38,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 20,
   },
 });
 

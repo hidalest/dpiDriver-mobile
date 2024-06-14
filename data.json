@@ -3,15 +3,11 @@
     "loginProps": {
         "loginLogo": "/src/assets/companylogo.png",
         "loginLogoAltText": "My Courier Image",
-        "loginHeader": "Sign into DPI Driver",
+        "loginHeader": "Sign-in to DPI Driver",
         "loginSlogan": "Performance Insights for Superior Service",
-        "loginEyeIconOn": "/src/assets/eyeIconOn.svg",
-        "loginEyeIconOff": "/src/assets/eyeIconOff.svg",
         "loginUsernamePlaceholder": "Email or username",
         "loginPasswordPlaceholder": "Password",
-        "loginButtonText": "Login",
-        "loginHidePasswordAltText": "Hide Password",
-        "loginShowPasswordAltText": "Show Password"
+        "loginButtonText": "Sign-In"
     },
     "dashboardProps": {
         "importantNotificationsTitle": "Important Notifications",
