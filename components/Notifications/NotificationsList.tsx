@@ -17,6 +17,7 @@ interface Notification {
   icon: string;
 }
 
+// TODO: This is just an example, this needs to be replaced when we fetch the notifications
 const initialNotifications: Notification[] = [
   {
     id: '1',
@@ -28,12 +29,101 @@ const initialNotifications: Notification[] = [
   {
     id: '2',
     title: 'Twitter',
-    message: 'Notification: @fpl_ & @silv6 indicated that they like your Tweet',
+    message:
+      'It is important that everyones finish all the training by this friday.',
     time: '2024-06-15T14:15:00Z', // ISO 8601 format
     icon: 'https://placekitten.com/40/40',
   },
   {
     id: '3',
+    title: 'Newsletter',
+    message:
+      'Email: "We have an incredible discount on the new adidas Falcon sneakers..."',
+    time: '2024-06-15T14:10:00Z', // ISO 8601 format
+    icon: 'https://placekitten.com/40/40',
+  },
+  {
+    id: '4',
+    title: 'Anna',
+    message: 'Message: You wanna come with me?',
+    time: '2024-06-15T14:30:00Z', // ISO 8601 format
+    icon: 'https://placekitten.com/40/40',
+  },
+  {
+    id: '5',
+    title: 'Twitter',
+    message: 'Notification: @fpl_ & @silv6 indicated that they like your Tweet',
+    time: '2024-06-15T14:15:00Z', // ISO 8601 format
+    icon: 'https://placekitten.com/40/40',
+  },
+  {
+    id: '6',
+    title: 'Newsletter',
+    message:
+      'Email: "We have an incredible discount on the new adidas Falcon sneakers..."',
+    time: '2024-06-15T14:10:00Z', // ISO 8601 format
+    icon: 'https://placekitten.com/40/40',
+  },
+  {
+    id: '7',
+    title: 'Anna',
+    message: 'Message: You wanna come with me?',
+    time: '2024-06-15T14:30:00Z', // ISO 8601 format
+    icon: 'https://placekitten.com/40/40',
+  },
+  {
+    id: '8',
+    title: 'Twitter',
+    message: 'Notification: @fpl_ & @silv6 indicated that they like your Tweet',
+    time: '2024-06-15T14:15:00Z', // ISO 8601 format
+    icon: 'https://placekitten.com/40/40',
+  },
+  {
+    id: '9',
+    title: 'Newsletter',
+    message:
+      'Email: "We have an incredible discount on the new adidas Falcon sneakers..."',
+    time: '2024-06-15T14:10:00Z', // ISO 8601 format
+    icon: 'https://placekitten.com/40/40',
+  },
+  {
+    id: '10',
+    title: 'Anna',
+    message: 'Message: You wanna come with me?',
+    time: '2024-06-15T14:30:00Z', // ISO 8601 format
+    icon: 'https://placekitten.com/40/40',
+  },
+  {
+    id: '11',
+    title: 'Twitter',
+    message: 'Notification: @fpl_ & @silv6 indicated that they like your Tweet',
+    time: '2024-06-15T14:15:00Z', // ISO 8601 format
+    icon: 'https://placekitten.com/40/40',
+  },
+  {
+    id: '12',
+    title: 'Newsletter',
+    message:
+      'Email: "We have an incredible discount on the new adidas Falcon sneakers..."',
+    time: '2024-06-15T14:10:00Z', // ISO 8601 format
+    icon: 'https://placekitten.com/40/40',
+  },
+  {
+    id: '13',
+    title: 'Anna',
+    message: 'Message: You wanna come with me?',
+    time: '2024-06-15T14:30:00Z', // ISO 8601 format
+    icon: 'https://placekitten.com/40/40',
+  },
+  {
+    id: '14',
+    title: 'Twitter',
+    message: 'Notification: @fpl_ & @silv6 indicated that they like your Tweet',
+    time: '2024-06-15T14:15:00Z', // ISO 8601 format
+    icon: 'https://placekitten.com/40/40',
+  },
+  {
+    id: '15',
     title: 'Newsletter',
     message:
       'Email: "We have an incredible discount on the new adidas Falcon sneakers..."',
@@ -82,7 +172,6 @@ const Notifications = () => {
   );
 
   return (
-    // <SafeAreaView style={styles.container}>
     <GestureHandlerRootView style={styles.container}>
       <SwipeListView
         data={notifications}
@@ -92,14 +181,12 @@ const Notifications = () => {
         disableRightSwipe
       />
     </GestureHandlerRootView>
-    // </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
   },
   rowBack: {
     alignItems: 'center',
@@ -111,6 +198,7 @@ const styles = StyleSheet.create({
     marginVertical: 5,
     marginHorizontal: 10,
     borderRadius: 10,
+    height: '100%',
   },
   backRightBtn: {
     alignItems: 'center',

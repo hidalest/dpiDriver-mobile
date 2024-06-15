@@ -2,11 +2,7 @@ import React from 'react';
 import { Text, View } from 'react-native';
 
 function Random() {
-  return (
-    <View>
-      <Text>Random</Text>
-    </View>
-  );
+  return <View></View>;
 }
 
 export default Random;

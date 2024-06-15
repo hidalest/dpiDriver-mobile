@@ -17,7 +17,6 @@ function Settings() {
   };
   return (
     <View>
-      <Text>Settings</Text>
       <Button onPress={handleLogout}>Log Out</Button>
     </View>
   );
