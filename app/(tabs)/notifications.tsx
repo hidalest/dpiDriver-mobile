@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, SafeAreaView, ScrollView } from 'react-native';
 import { FadeInView } from '@/utils/animations';
 
 import data from '../../data.json';
+import NotificationsList from '@/components/Notifications/NotificationsList';
 
 function Notifications() {
   const { mainTitle, notificationsAreaColor } = data.notificationProps;
@@ -10,14 +11,14 @@ function Notifications() {
     <SafeAreaView style={styles.safeArea}>
       <FadeInView style={styles.container}>
         <Text style={styles.mainTitle}>{mainTitle}</Text>
-        <ScrollView contentContainerStyle={styles.scrollViewContent}>
-          <View
-            style={[
-              styles.bottomContainer,
-              { backgroundColor: notificationsAreaColor },
-            ]}
-          ></View>
-        </ScrollView>
+        <View
+          style={[
+            styles.bottomContainer,
+            { backgroundColor: notificationsAreaColor },
+          ]}
+        >
+          <NotificationsList />
+        </View>
       </FadeInView>
     </SafeAreaView>
   );
@@ -40,8 +41,8 @@ const styles = StyleSheet.create({
     minHeight: '100%',
     width: '100%',
     padding: 20,
-    borderTopRightRadius: 10,
-    borderTopLeftRadius: 10,
+    borderTopRightRadius: 30,
+    borderTopLeftRadius: 30,
   },
   mainTitle: {
     fontSize: 20,

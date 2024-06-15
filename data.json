@@ -339,6 +339,6 @@
     },
     "notificationProps": {
         "mainTitle": "Notifications",
-        "notificationsAreaColor": "#4F81BD"
+        "notificationsAreaColor": "#f5f5f5"
     }
 }
