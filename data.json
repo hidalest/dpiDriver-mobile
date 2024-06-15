@@ -326,12 +326,12 @@
         },
         "newsNotificationsProps": [
             {
-                "id": 1,
+                "id": "1",
                 "title": "News One",
                 "description": "Quis ipsum ex voluptate aute reprehenderit labore culpa excepteur consequat minim excepteur est veniam consequat."
             },
             {
-                "id": 2,
+                "id": "2",
                 "title": "News Two",
                 "description": "Quis ipsum ex voluptate aute reprehenderit labore culpa excepteur consequat minim excepteur est veniam consequat."
             }
