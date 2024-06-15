@@ -9,8 +9,6 @@ import data from '../../data.json';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 function Notifications() {
   const { mainTitle, notificationsAreaColor } = data.notificationProps;
-  // const StarIcon = (props: IconElement) => <Icon {...props} name='star' />;
-  const HeartIcon = (props): IconElement => <Icon {...props} name='heart' />;
   return (
     <SafeAreaView style={styles.safeArea}>
       <FadeInView style={styles.container}>
@@ -25,12 +23,15 @@ function Notifications() {
         </View>
         <View style={styles.buttonContainer}>
           <Button style={styles.button} status='danger'>
-            <FontAwesome
-              size={60}
-              name='trash'
-              color={'white'}
-              style={styles.buttonIcon}
-            />
+            <>
+              <FontAwesome
+                size={60}
+                name='trash'
+                color={'white'}
+                style={styles.buttonIcon}
+              />
+              <Text style={styles.buttonText}>Delete all</Text>
+            </>
           </Button>
         </View>
       </FadeInView>
@@ -71,10 +72,21 @@ const styles = StyleSheet.create({
     backgroundColor: '#e9e9e9',
   },
   button: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
     borderRadius: 50,
+    alignItems: 'center',
   },
   buttonIcon: {
     fontSize: 20,
+    marginRight: 5,
+  },
+  buttonText: {
+    fontSize: 15,
+    marginRight: 5,
+    color: 'white',
+    fontWeight: 'bold',
   },
 });
 

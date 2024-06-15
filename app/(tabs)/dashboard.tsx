@@ -19,6 +19,8 @@ import { FadeInView } from '@/utils/animations';
 export default function Dashboard() {
   const { dashboardHeading, performanceScoreProps, newsNotificationsProps } =
     data.dashboardProps;
+
+  const { newsHeading, newsBackgroundColor, news } = newsNotificationsProps;
   const colorScheme = useColorScheme(); // Get the current color scheme
 
   // Define the background color based on the color scheme
@@ -43,12 +45,12 @@ export default function Dashboard() {
             />
           </ShadowCard>
           <ShadowCard style={styles.newsContainer}>
-            <Text style={styles.newsHeading}>News</Text>
+            <Text style={styles.newsHeading}>{newsHeading}</Text>
             <NewsCarousel
-              backgroundColor='#c0dee5'
+              backgroundColor={newsBackgroundColor}
               titleColor='black'
               descriptionColor='black'
-              newsData={newsNotificationsProps}
+              newsData={news}
             />
           </ShadowCard>
         </ScrollView>

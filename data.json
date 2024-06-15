@@ -324,18 +324,22 @@
                 }
             ]
         },
-        "newsNotificationsProps": [
-            {
-                "id": "1",
-                "title": "News One",
-                "description": "Quis ipsum ex voluptate aute reprehenderit labore culpa excepteur consequat minim excepteur est veniam consequat."
-            },
-            {
-                "id": "2",
-                "title": "News Two",
-                "description": "Quis ipsum ex voluptate aute reprehenderit labore culpa excepteur consequat minim excepteur est veniam consequat."
-            }
-        ]
+        "newsNotificationsProps": {
+            "newsHeading": "News",
+            "newsBackgroundColor": "#e9e9e9",
+            "news": [
+                {
+                    "id": "1",
+                    "title": "News One",
+                    "description": "Quis ipsum ex voluptate aute reprehenderit labore culpa excepteur consequat minim excepteur est veniam consequat."
+                },
+                {
+                    "id": "2",
+                    "title": "News Two",
+                    "description": "Quis ipsum ex voluptate aute reprehenderit labore culpa excepteur consequat minim excepteur est veniam consequat."
+                }
+            ]
+        }
     },
     "notificationProps": {
         "mainTitle": "Notifications",
