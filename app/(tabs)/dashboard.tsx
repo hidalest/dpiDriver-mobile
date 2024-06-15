@@ -14,9 +14,11 @@ import NewsNotification from '@/components/Dashboard/NewsNotification/NewsNotifi
 import ShadowCard from '@/components/UI/ShadowCard/ShadowCard';
 import { Colors } from '@/constants/Colors';
 import NewsCarousel from '@/components/Dashboard/NewsCarousel/NewsCarousel';
+import { FadeInView } from '@/utils/animations';
 
 export default function Dashboard() {
-  const { dashboardHeading, performanceScoreProps } = data.dashboardProps;
+  const { dashboardHeading, performanceScoreProps, newsNotificationsProps } =
+    data.dashboardProps;
   const colorScheme = useColorScheme(); // Get the current color scheme
 
   // Define the background color based on the color scheme
@@ -29,26 +31,29 @@ export default function Dashboard() {
 
   console.log(colorScheme);
   return (
-    <View style={(styles.container, { backgroundColor: 'transparent' })}>
-      <ScrollView>
-        <DashboardHeading {...dashboardHeading} />
-        <ShadowCard>
-          <PerformanceIndicator
-            {...performanceScoreProps}
-            progressScore={75}
-            style={styles.performance}
-          />
-        </ShadowCard>
-        <ShadowCard style={styles.newsContainer}>
-          <Text style={styles.newsHeading}>News</Text>
-          <NewsCarousel
-            backgroundColor='#4F81BD'
-            titleColor='black'
-            descriptionColor='black'
-          />
-        </ShadowCard>
-      </ScrollView>
-    </View>
+    <FadeInView style={(styles.container, { backgroundColor: 'transparent' })}>
+      <View style={(styles.container, { backgroundColor: 'transparent' })}>
+        <ScrollView>
+          <DashboardHeading {...dashboardHeading} />
+          <ShadowCard>
+            <PerformanceIndicator
+              {...performanceScoreProps}
+              progressScore={75}
+              style={styles.performance}
+            />
+          </ShadowCard>
+          <ShadowCard style={styles.newsContainer}>
+            <Text style={styles.newsHeading}>News</Text>
+            <NewsCarousel
+              backgroundColor='#c0dee5'
+              titleColor='black'
+              descriptionColor='black'
+              newsData={newsNotificationsProps}
+            />
+          </ShadowCard>
+        </ScrollView>
+      </View>
+    </FadeInView>
   );
 }
 
