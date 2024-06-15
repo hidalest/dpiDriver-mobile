@@ -70,6 +70,7 @@ const styles = StyleSheet.create({
   },
   cardTitle: {
     marginBottom: 10,
+    fontSize: 18,
   },
 });
 

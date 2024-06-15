@@ -336,5 +336,9 @@
                 "description": "Quis ipsum ex voluptate aute reprehenderit labore culpa excepteur consequat minim excepteur est veniam consequat."
             }
         ]
+    },
+    "notificationProps": {
+        "mainTitle": "Notifications",
+        "notificationsAreaColor": "#4F81BD"
     }
 }

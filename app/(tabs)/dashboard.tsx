@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   newsHeading: {
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: 'bold',
   },
 });
