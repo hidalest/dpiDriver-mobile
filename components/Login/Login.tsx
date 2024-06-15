@@ -40,9 +40,10 @@ const Login = (props: LoginProps) => {
         />
       </FadeInView>
       <FadeInView style={{ width: '100%' }} duration={1700}>
-        <Text category='h1' style={styles.header}>
+        {/* TODO: check if we want this title */}
+        {/* <Text category='h1' style={styles.header}>
           {loginHeader}
-        </Text>
+        </Text> */}
         <Text category='p1' style={styles.slogan}>
           {loginSlogan}
         </Text>

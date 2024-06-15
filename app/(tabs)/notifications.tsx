@@ -2,11 +2,15 @@ import React from 'react';
 import { StyleSheet, Text, View, SafeAreaView, ScrollView } from 'react-native';
 import { FadeInView } from '@/utils/animations';
 
-import data from '../../data.json';
 import NotificationsList from '@/components/Notifications/NotificationsList';
+import { Button, Icon, IconElement } from '@ui-kitten/components';
 
+import data from '../../data.json';
+import FontAwesome from '@expo/vector-icons/FontAwesome';
 function Notifications() {
   const { mainTitle, notificationsAreaColor } = data.notificationProps;
+  // const StarIcon = (props: IconElement) => <Icon {...props} name='star' />;
+  const HeartIcon = (props): IconElement => <Icon {...props} name='heart' />;
   return (
     <SafeAreaView style={styles.safeArea}>
       <FadeInView style={styles.container}>
@@ -18,6 +22,16 @@ function Notifications() {
           ]}
         >
           <NotificationsList />
+        </View>
+        <View style={styles.buttonContainer}>
+          <Button style={styles.button} status='danger'>
+            <FontAwesome
+              size={60}
+              name='trash'
+              color={'white'}
+              style={styles.buttonIcon}
+            />
+          </Button>
         </View>
       </FadeInView>
     </SafeAreaView>
@@ -38,9 +52,10 @@ const styles = StyleSheet.create({
   },
   bottomContainer: {
     backgroundColor: '#4F81BD',
-    minHeight: '100%',
+    minHeight: '80%',
     width: '100%',
     padding: 20,
+    paddingBottom: 0,
     borderTopRightRadius: 30,
     borderTopLeftRadius: 30,
   },
@@ -48,6 +63,18 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     padding: 20,
+  },
+  buttonContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#e9e9e9',
+  },
+  button: {
+    borderRadius: 50,
+  },
+  buttonIcon: {
+    fontSize: 20,
   },
 });
 

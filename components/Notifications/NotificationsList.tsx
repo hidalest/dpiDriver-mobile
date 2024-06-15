@@ -173,13 +173,16 @@ const Notifications = () => {
 
   return (
     <GestureHandlerRootView style={styles.container}>
-      <SwipeListView
-        data={notifications}
-        renderItem={renderItem}
-        renderHiddenItem={renderHiddenItem}
-        rightOpenValue={-75}
-        disableRightSwipe
-      />
+      {notifications.length !== 0 && (
+        <SwipeListView
+          data={notifications}
+          renderItem={renderItem}
+          renderHiddenItem={renderHiddenItem}
+          rightOpenValue={-75}
+          disableRightSwipe
+        />
+      )}
+      {notifications.length === 0 && <Text>No new Notifications...</Text>}
     </GestureHandlerRootView>
   );
 };

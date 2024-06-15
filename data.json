@@ -3,7 +3,7 @@
     "loginProps": {
         "loginLogo": "/src/assets/companylogo.png",
         "loginLogoAltText": "My Courier Image",
-        "loginHeader": "Sign-in to DPI Driver",
+        "loginHeader": "Sign-in ",
         "loginSlogan": "Performance Insights for Superior Service",
         "loginUsernamePlaceholder": "Email or username",
         "loginPasswordPlaceholder": "Password",

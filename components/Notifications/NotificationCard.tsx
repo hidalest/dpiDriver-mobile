@@ -24,7 +24,7 @@ const NotificationCard = ({
   return (
     <View style={styles.rowFront}>
       <TouchableOpacity onPress={() => onMarkAsRead(id)} style={styles.card}>
-        <Image source={{ uri: icon }} style={styles.icon} />
+        {/* <Image source={{ uri: icon }} style={styles.icon} /> */}
         <View style={styles.textContainer}>
           <Text style={styles.title}>{title}</Text>
           <Text style={styles.message}>{message}</Text>
