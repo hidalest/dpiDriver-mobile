@@ -5,7 +5,7 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: 'blue',
+        tabBarActiveTintColor: '#4F81BD',
       }}
     >
       <Tabs.Screen
@@ -29,12 +29,12 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name='random'
+        name='training'
         options={{
-          title: 'Random',
+          title: 'Training',
           headerShown: false,
           tabBarIcon: ({ color }) => (
-            <FontAwesome size={28} name='user' color={color} />
+            <FontAwesome size={28} name='graduation-cap' color={color} />
           ),
         }}
       />
