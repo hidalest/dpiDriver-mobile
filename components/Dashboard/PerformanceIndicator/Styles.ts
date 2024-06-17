@@ -23,6 +23,9 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     marginBottom: 15,
   },
+  message: {
+    textAlign: 'center',
+  },
   performanceCategory: {
     marginTop: 30,
     marginBottom: 15,

@@ -8,13 +8,12 @@ import {
 } from 'react-native';
 import DashboardHeading from '@/components/Dashboard/DashboardHeading/DashboardHeading';
 import PerformanceIndicator from '@/components/Dashboard/PerformanceIndicator/PerformanceIndicator';
-
-import data from '../../data.json';
-import NewsNotification from '@/components/Dashboard/NewsNotification/NewsNotification';
 import ShadowCard from '@/components/UI/ShadowCard/ShadowCard';
 import { Colors } from '@/constants/Colors';
 import NewsCarousel from '@/components/Dashboard/NewsCarousel/NewsCarousel';
 import { FadeInView } from '@/utils/animations';
+
+import data from '../../data.json';
 
 export default function Dashboard() {
   const { dashboardHeading, performanceScoreProps, newsNotificationsProps } =

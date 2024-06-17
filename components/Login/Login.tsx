@@ -6,6 +6,7 @@ import { FadeInView, ScaleInView } from '@/utils/animations';
 import { Colors } from '@/constants/Colors';
 import { LoginProps } from './Interface';
 import { styles } from './Styles';
+import { ModalWithBackdropShowcase } from '../UI/ModalWithBackdropShowcase';
 
 const Login = (props: LoginProps) => {
   const {
@@ -16,6 +17,8 @@ const Login = (props: LoginProps) => {
     loginButtonText,
     loginPasswordPlaceholder,
     loginUsernamePlaceholder,
+    forgotButton,
+    forgotPasswordModalInstructions,
   } = props;
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -71,6 +74,11 @@ const Login = (props: LoginProps) => {
         />
       </FadeInView>
       <ScaleInView style={styles.button}>
+        <ModalWithBackdropShowcase
+          title={forgotButton}
+          description={forgotPasswordModalInstructions}
+          buttonText='Ok'
+        />
         <Button size='large' onPress={handleSignIn} style={styles.button}>
           {loginButtonText}
         </Button>

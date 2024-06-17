@@ -7,7 +7,9 @@
         "loginSlogan": "Performance Insights for Superior Service",
         "loginUsernamePlaceholder": "Email or username",
         "loginPasswordPlaceholder": "Password",
-        "loginButtonText": "Sign-In"
+        "loginButtonText": "Sign-In",
+        "forgotButton": "Forgot Password?",
+        "forgotPasswordModalInstructions": "Please contact your admin \nadministration@mycourier.com"
     },
     "dashboardProps": {
         "importantNotificationsTitle": "Important Notifications",
