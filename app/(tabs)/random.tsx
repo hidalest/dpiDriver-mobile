@@ -1,10 +1,25 @@
+import Trainings from '@/components/Trainings/Trainings';
 import React from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
+import { trainingsPageProps } from '../../data.json'
+
 
 function Random() {
+  const { 
+      headerText, 
+      searchTermPlaceholder, 
+      noTrainingsText, 
+      emoji,
+      trainingDummyData } = trainingsPageProps
+
   return (
     <View>
-      <Text>Random</Text>
+      <Trainings 
+        headerText={headerText} 
+        trainings={trainingDummyData} 
+        noTrainingsText={noTrainingsText} 
+        emoji={emoji} 
+        searchTermPlaceholder={searchTermPlaceholder} />
     </View>
   );
 }
