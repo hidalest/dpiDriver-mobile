@@ -22,7 +22,7 @@ function Notifications() {
           <NotificationsList />
         </View>
         <View style={styles.buttonContainer}>
-          <Button style={styles.button} status='danger'>
+          <Button style={styles.button}>
             <>
               <FontAwesome
                 size={60}
