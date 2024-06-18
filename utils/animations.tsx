@@ -5,7 +5,7 @@ import type { ViewStyle } from 'react-native';
 
 type FadeInViewProps = PropsWithChildren<{style: ViewStyle, duration?: number}>;
 type SpringInViewProps = PropsWithChildren<{ style: ViewStyle }>;
-type ScaleInViewProps = PropsWithChildren<{ style: ViewStyle}>;
+type ScaleInViewProps = PropsWithChildren<{ style: ViewStyle, delay?: number}>;
 
 
 const FadeInView: React.FC<FadeInViewProps> = props => {
@@ -55,12 +55,14 @@ const SpringInView: React.FC<SpringInViewProps> = (props) => {
 
 const ScaleInView: React.FC<ScaleInViewProps> = (props) => {
   const scaleAnim = useRef(new Animated.Value(0)).current;
-
+  const { delay } = props;
+  
   useEffect(() => {
     Animated.spring(scaleAnim, {
       toValue: 1,
       tension: 130,
       friction: 8,
+      delay: delay || 0,
       useNativeDriver: true,
     }).start();
   }, [scaleAnim]);
