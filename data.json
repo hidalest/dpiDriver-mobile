@@ -3,11 +3,13 @@
     "loginProps": {
         "loginLogo": "/src/assets/companylogo.png",
         "loginLogoAltText": "My Courier Image",
-        "loginHeader": "Sign-in to DPI Driver",
+        "loginHeader": "Sign-in ",
         "loginSlogan": "Performance Insights for Superior Service",
         "loginUsernamePlaceholder": "Email or username",
         "loginPasswordPlaceholder": "Password",
-        "loginButtonText": "Sign-In"
+        "loginButtonText": "Sign-In",
+        "forgotButton": "Forgot Password?",
+        "forgotPasswordModalInstructions": "Please contact your admin \nadministration@mycourier.com"
     },
     "trainingsPageProps": {
         "headerText": "My Trainings",
@@ -412,17 +414,25 @@
                 }
             ]
         },
-        "newsNotificationsProps": [
-            {
-                "id": 1,
-                "title": "News One",
-                "description": "Quis ipsum ex voluptate aute reprehenderit labore culpa excepteur consequat minim excepteur est veniam consequat."
-            },
-            {
-                "id": 2,
-                "title": "News Two",
-                "description": "Quis ipsum ex voluptate aute reprehenderit labore culpa excepteur consequat minim excepteur est veniam consequat."
-            }
-        ]
+        "newsNotificationsProps": {
+            "newsHeading": "News",
+            "newsBackgroundColor": "#e9e9e9",
+            "news": [
+                {
+                    "id": "1",
+                    "title": "News One",
+                    "description": "Quis ipsum ex voluptate aute reprehenderit labore culpa excepteur consequat minim excepteur est veniam consequat."
+                },
+                {
+                    "id": "2",
+                    "title": "News Two",
+                    "description": "Quis ipsum ex voluptate aute reprehenderit labore culpa excepteur consequat minim excepteur est veniam consequat."
+                }
+            ]
+        }
+    },
+    "notificationProps": {
+        "mainTitle": "Notifications",
+        "notificationsAreaColor": "#e9e9e9"
     }
 }

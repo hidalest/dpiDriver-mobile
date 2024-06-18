@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "dpiDriver-Mobile",
+    "name": "MyCourier",
     "slug": "dpiDriver-Mobile",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -33,9 +33,7 @@
       [
         "expo-asset",
         {
-          "assets": [
-            "./assets/images/companylogo.png"
-          ]
+          "assets": ["./assets/images/companylogo.png"]
         }
       ]
     ],

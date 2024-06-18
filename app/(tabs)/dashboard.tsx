@@ -8,17 +8,18 @@ import {
 } from 'react-native';
 import DashboardHeading from '@/components/Dashboard/DashboardHeading/DashboardHeading';
 import PerformanceIndicator from '@/components/Dashboard/PerformanceIndicator/PerformanceIndicator';
-
-import data from '../../data.json';
-import NewsNotification from '@/components/Dashboard/NewsNotification/NewsNotification';
 import ShadowCard from '@/components/UI/ShadowCard/ShadowCard';
 import { Colors } from '@/constants/Colors';
 import NewsCarousel from '@/components/Dashboard/NewsCarousel/NewsCarousel';
 import { FadeInView } from '@/utils/animations';
 
+import data from '../../data.json';
+
 export default function Dashboard() {
   const { dashboardHeading, performanceScoreProps, newsNotificationsProps } =
     data.dashboardProps;
+
+  const { newsHeading, newsBackgroundColor, news } = newsNotificationsProps;
   const colorScheme = useColorScheme(); // Get the current color scheme
 
   // Define the background color based on the color scheme
@@ -43,12 +44,12 @@ export default function Dashboard() {
             />
           </ShadowCard>
           <ShadowCard style={styles.newsContainer}>
-            <Text style={styles.newsHeading}>News</Text>
+            <Text style={styles.newsHeading}>{newsHeading}</Text>
             <NewsCarousel
-              backgroundColor='#c0dee5'
+              backgroundColor={newsBackgroundColor}
               titleColor='black'
               descriptionColor='black'
-              newsData={newsNotificationsProps}
+              newsData={news}
             />
           </ShadowCard>
         </ScrollView>
@@ -75,7 +76,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   newsHeading: {
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: 'bold',
   },
 });

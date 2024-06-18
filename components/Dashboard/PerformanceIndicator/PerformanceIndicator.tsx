@@ -50,7 +50,7 @@ function PerformanceIndicator(props: PerformanceScoreProps) {
           color={result?.color}
         />
         <Text style={styles.subHeading}>{result?.title}</Text>
-        <Text>{result?.message}</Text>
+        <Text style={styles.message}>{result?.message}</Text>
       </Card>
     </View>
   );

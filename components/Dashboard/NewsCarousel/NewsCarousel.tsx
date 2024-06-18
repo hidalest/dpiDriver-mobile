@@ -9,17 +9,16 @@ interface NewsItem {
   title: string;
   description: string;
 }
-
-const { width } = Dimensions.get('window');
-const CARD_WIDTH = width * 0.8;
-const SPACING = 10;
-
 interface NewsCarouselProps {
   backgroundColor?: string;
   titleColor?: string;
   descriptionColor?: string;
   newsData: NewsItem[];
 }
+
+const { width } = Dimensions.get('window');
+const CARD_WIDTH = width * 0.8;
+const SPACING = 10;
 
 const NewsCarousel = (props: NewsCarouselProps) => {
   const { backgroundColor, titleColor, descriptionColor, newsData } = props;
@@ -71,6 +70,7 @@ const styles = StyleSheet.create({
   },
   cardTitle: {
     marginBottom: 10,
+    fontSize: 18,
   },
 });
 
