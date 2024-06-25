@@ -4,12 +4,13 @@ import React, { useState } from 'react';
 import { View, StyleSheet } from 'react-native';
 import Login from '@/components/Login/Login';
 import data from '../data.json';
-import { SERVER_URL } from '@/config/apiConfig';
+import { API_CODE, SERVER_URL } from '@/config/apiConfig';
 import axios from 'axios';
 
 const LoginScreen = () => {
   const {} = data.loginProps;
   const [isLoading, setIsLoading] = useState(false);
+  const { token_not_valid } = API_CODE;
 
   const navigation = useNavigation();
 
@@ -50,6 +51,9 @@ const LoginScreen = () => {
       const dataUser = await responseUser.json();
       console.log(dataUser);
 
+      if (dataUser.code === token_not_valid) {
+        throw new Error('Invalid username and password');
+      }
       // After successful login, reset the navigation stack and navigate to the dashboard
       navigation.dispatch(
         CommonActions.reset({
