@@ -12,13 +12,24 @@ export default function RootLayout() {
       <SafeAreaProvider>
         <Stack>
           <Stack.Screen
-            name='(tabs)'
-            options={{
-              headerTitle: 'My Courier',
-              headerBackButtonMenuEnabled: false,
-              headerBackVisible: false,
-            }}
-          />
+              name='index'
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name='(tabs)'
+              options={{
+                headerTitle: 'My Courier',
+                headerBackButtonMenuEnabled: false,
+                headerBackVisible: false,
+              }}
+            />
+            <Stack.Screen
+              name="[trainingId]"
+              options={{
+                headerTitle: 'Training Details',
+                headerBackVisible: true,
+              }}
+            />
         </Stack>
         <StatusBar style='auto' />
       </SafeAreaProvider>

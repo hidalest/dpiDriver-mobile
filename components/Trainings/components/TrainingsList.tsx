@@ -4,6 +4,7 @@ import { Card, Text } from '@ui-kitten/components';
 import { FadeInView, ScaleInView } from '@/utils/animations';
 import { formatState } from '@/utils/utils'; 
 import { Training } from '../Interface';
+import { useRouter } from 'expo-router';
 
 interface TrainingsListProps {
     trainings: Training[];
@@ -11,33 +12,44 @@ interface TrainingsListProps {
     emoji: string;
 }
 
-const TrainingsList = ({ trainings, noTrainingsText, emoji }: TrainingsListProps) => (
-  <View style={styles.container}>
-    {trainings.length > 0 ? (
-        <ScrollView contentContainerStyle={styles.trainingList}>
-            {trainings.map((training) => (
-            <Card key={training.id} style={styles.trainingCard}>
-                <Text style={styles.trainingHeader}>{training.name}</Text>
-                <Text style={styles.trainingDescription}>{training.description}</Text>
-                <View style={styles.trainingFooter}>
-                <Text style={styles.trainingState}>{formatState(training.state.toUpperCase())}</Text>
-                <Text style={styles.trainingDuration}>{training.duration}</Text>
-                </View>
-            </Card>
-            ))}
-        </ScrollView>
-    ) : (
-        <View style={styles.noTrainingsFound}>
-          <ScaleInView style={{}} delay={350}>
-            <Text style={styles.emoji}>{emoji}</Text>
-          </ScaleInView>
-          <FadeInView style={{}}>
-            <Text style={styles.noTrainingsText}>{noTrainingsText}</Text>
-          </FadeInView>
-        </View>
-    )}
-  </View>
-);
+const TrainingsList = ({ trainings, noTrainingsText, emoji }: TrainingsListProps) => {
+    const router = useRouter()
+
+    const handlePress = (training: Training) => {
+        router.push({
+            pathname: `${training.id}`,
+            params: { training: JSON.stringify(training) }
+        })
+    }
+
+    return (
+    <View style={styles.container}>
+        {trainings.length > 0 ? (
+            <ScrollView contentContainerStyle={styles.trainingList}>
+                {trainings.map((training) => (
+                <Card key={training.id} style={styles.trainingCard} onPress={() => handlePress(training)}>
+                    <Text style={styles.trainingHeader}>{training.name}</Text>
+                    <Text style={styles.trainingDescription}>{training.description}</Text>
+                    <View style={styles.trainingFooter}>
+                    <Text style={styles.trainingState}>{formatState(training.state.toUpperCase())}</Text>
+                    <Text style={styles.trainingDuration}>{training.duration}</Text>
+                    </View>
+                </Card>
+                ))}
+            </ScrollView>
+        ) : (
+            <View style={styles.noTrainingsFound}>
+            <ScaleInView style={{}} delay={350}>
+                <Text style={styles.emoji}>{emoji}</Text>
+            </ScaleInView>
+            <FadeInView style={{}}>
+                <Text style={styles.noTrainingsText}>{noTrainingsText}</Text>
+            </FadeInView>
+            </View>
+        )}
+    </View>
+  )
+};
 
 const styles = StyleSheet.create({
     container: {
