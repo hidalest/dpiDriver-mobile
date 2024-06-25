@@ -10,11 +10,36 @@ morgan('tiny');
 
 const app = express();
 
-const getTokenURL = 'http://164.90.180.185/api/auth/token/';
+const apiEndpoint = 'http://164.90.180.185/api';
 
 app.use(morgan('tiny'));
 app.use(cors());
 app.use(express.json());
+
+app.get('/', (req: Request, res: Response) => {
+  const token = req.headers.authorization;
+
+  if (!token) {
+    return res.status(401).json({ error: 'Authorization header missing' });
+  }
+
+  if (!token) {
+    return res.status(401).json({ error: 'Token missing' });
+  }
+
+  const fetchOptions = {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  fetch(`${apiEndpoint}/current-user/`, fetchOptions)
+    .then((response) => response.json())
+    .then((data) => res.json(data))
+    .catch((error) => res.status(500).json({ error: error.message }));
+});
 
 app.post('/', (req: Request, res: Response) => {
   console.log('Reaching');
@@ -29,7 +54,7 @@ app.post('/', (req: Request, res: Response) => {
     body: JSON.stringify(data),
   };
 
-  fetch(getTokenURL, fetchOptions)
+  fetch(`${apiEndpoint}/auth/token/`, fetchOptions)
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
@@ -37,27 +62,5 @@ app.post('/', (req: Request, res: Response) => {
     })
     .catch((error) => console.error(error.message));
 });
-
-// app.post('/', (req, res) => {
-//   const data = req.body;
-
-//   const fetchOptions = {
-//     method: 'POST',
-//     headers: {
-//       'Content-type': 'application/json',
-//       //   'x-cassandra-token': TOKEN_KEYVALUES,
-//       Accept: 'application/json',
-//     },
-//     body: JSON.stringify(data),
-//   };
-
-//   fetch(getToken, fetchOptions)
-//     .then((response) => response.json())
-//     .then((data) => {
-//       res.status(201).json({ message: 'POST request successful', data });
-//       console.log(data);
-//     })
-//     .catch((error) => console.log(error.message));
-// });
 
 app.listen(PORT, () => console.log(`server is running on port ${PORT}`));

@@ -16,24 +16,8 @@ const LoginScreen = () => {
     email: string,
     password: string
   ): Promise<void> => {
-    // Perform login logic here
-    console.log(email);
-    console.log(password);
-
-    // axios
-    //   .post(SERVER_URL, { email, password })
-    //   .then(function (response) {
-    //     console.log(response);
-    //     if (!response.ok) {
-    //       throw new Error(`HTTP error! status: ${response.status}`);
-    //     }
-    //   })
-    //   .catch(function (error) {
-    //     console.error(error);
-    //   });
-
     try {
-      const response = await fetch(SERVER_URL, {
+      const responseToken = await fetch(SERVER_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -43,18 +27,30 @@ const LoginScreen = () => {
           password,
         }),
       });
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+      if (!responseToken.ok) {
+        throw new Error(`HTTP error! status: ${responseToken.status}`);
       }
-      const token = await response.json();
-      console.log(token);
+      const authToken = await responseToken.json();
 
-      // navigation.dispatch(
-      //   CommonActions.reset({
-      //     index: 0,
-      //     routes: [{ name: '(tabs)' }],
-      //   })
-      // );
+      const responseUser = await fetch(SERVER_URL, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `${authToken.access}`,
+        },
+      });
+      if (!responseUser.ok) {
+        throw new Error(`HTTP error! status: ${responseUser.status}`);
+      }
+      const dataUser = await responseUser.json();
+      console.log(dataUser);
+
+      navigation.dispatch(
+        CommonActions.reset({
+          index: 0,
+          routes: [{ name: '(tabs)' }],
+        })
+      );
     } catch (error) {
       console.error('Network request failed:', error);
     }
