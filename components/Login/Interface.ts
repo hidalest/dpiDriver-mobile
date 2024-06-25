@@ -1,4 +1,5 @@
 export interface LoginProps {
+  isLoading: boolean;
   onSignIn: (username: string, password: string) => void;
   loginLogoAltText: string;
   loginHeader: string;
