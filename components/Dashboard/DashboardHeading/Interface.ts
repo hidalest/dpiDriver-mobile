@@ -5,4 +5,5 @@ export interface DashboardHeadingProps {
   mainLogo: string;
   greetingHeader: string;
   style?: ViewStyle;
+  name: string;
 }

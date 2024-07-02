@@ -21,6 +21,7 @@ interface UserData {
     training_delivered: boolean;
     autocreated: boolean;
   };
+  dcr: number;
 }
 
 interface AuthContextType {

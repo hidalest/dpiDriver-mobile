@@ -51,7 +51,7 @@ app.get('/', (req: Request, res: Response) => {
           console.log('🚀 ~ .then ~ dashboardData:', dashboardData);
           const getAllUserData = dashboardData.results.find(
             //TODO change this for the acual id of the login user which is data.id
-            (item: any) => item.id === 7696
+            (item: any) => item.id === 7706
           );
           console.log('🚀 ~ .then ~ getAllUserData:', getAllUserData);
 

@@ -6,15 +6,13 @@ import { Avatar } from '@ui-kitten/components';
 import { useAuth } from '@/context/authContext';
 
 function DashboardHeading(props: DashboardHeadingProps) {
-  const { userPicPlaceholder, mainLogo, greetingHeader } = props;
-  const { userData } = useAuth();
-  const { first_name } = userData.driver;
+  const { userPicPlaceholder, mainLogo, greetingHeader, name } = props;
   return (
     <View style={styles.container}>
       {/* //TODO: delete the name Esteban and replace it with the actual user */}
       <Text>
         {greetingHeader}
-        {first_name}
+        {name}
       </Text>
 
       <Avatar

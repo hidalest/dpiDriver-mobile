@@ -33,16 +33,27 @@ export default function Dashboard() {
     : Colors.light.tint;
 
   console.log(colorScheme);
+
+  if (!userData) {
+    return (
+      <View style={[styles.container, { backgroundColor }]}>
+        <Text>Loading...</Text>
+      </View>
+    );
+  }
+
+  const { first_name } = userData.driver;
   return (
     <FadeInView style={(styles.container, { backgroundColor: 'transparent' })}>
       <View style={(styles.container, { backgroundColor: 'transparent' })}>
         <ScrollView>
-          <DashboardHeading {...dashboardHeading} />
+          <DashboardHeading {...dashboardHeading} name={first_name} />
           <ShadowCard>
             <PerformanceIndicator
               {...performanceScoreProps}
               progressScore={75}
               style={styles.performance}
+              dcr={userData.dcr}
             />
           </ShadowCard>
           <ShadowCard style={styles.newsContainer}>

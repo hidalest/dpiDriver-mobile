@@ -16,6 +16,7 @@ function PerformanceIndicator(props: PerformanceScoreProps) {
   //@ts-ignore - For some reason Typescript is not detecting the row property and it is clearly mentioned on the UI Kitten component
   //https://akveo.github.io/react-native-ui-kitten/docs/components/select/overview#select
   const currentCategory = performanceGrading[selectedIndex.row];
+  console.log('🚀 ~ PerformanceIndicator ~ currentCategory:', currentCategory);
   let result;
 
   const dcrMetric = performanceGrading.find(

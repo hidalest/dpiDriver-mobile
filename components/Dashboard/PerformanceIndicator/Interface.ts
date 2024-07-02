@@ -18,4 +18,5 @@ export interface PerformanceScoreProps {
   progressScore: number;
   style?: ViewStyle;
   performanceGrading: PerformanceMetric[];
+  dcr: number;
 }
