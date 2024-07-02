@@ -14,10 +14,12 @@ import NewsCarousel from '@/components/Dashboard/NewsCarousel/NewsCarousel';
 import { FadeInView } from '@/utils/animations';
 
 import data from '../../data.json';
+import { useAuth } from '@/context/authContext';
 
 export default function Dashboard() {
   const { dashboardHeading, performanceScoreProps, newsNotificationsProps } =
     data.dashboardProps;
+  const { userData } = useAuth();
 
   const { newsHeading, newsBackgroundColor, news } = newsNotificationsProps;
   const colorScheme = useColorScheme(); // Get the current color scheme

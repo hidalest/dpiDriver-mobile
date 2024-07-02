@@ -5,23 +5,26 @@ import * as eva from '@eva-design/eva';
 import { ApplicationProvider, Layout, Text } from '@ui-kitten/components';
 import { StatusBar } from 'expo-status-bar';
 import { Colors } from '@/constants/Colors';
+import { AuthProvider } from '@/context/authContext';
 
 export default function RootLayout() {
   return (
-    <ApplicationProvider {...eva} theme={eva.light}>
-      <SafeAreaProvider>
-        <Stack>
-          <Stack.Screen
-            name='(tabs)'
-            options={{
-              headerTitle: 'My Courier',
-              headerBackButtonMenuEnabled: false,
-              headerBackVisible: false,
-            }}
-          />
-        </Stack>
-        <StatusBar style='auto' />
-      </SafeAreaProvider>
-    </ApplicationProvider>
+    <AuthProvider>
+      <ApplicationProvider {...eva} theme={eva.light}>
+        <SafeAreaProvider>
+          <Stack>
+            <Stack.Screen
+              name='(tabs)'
+              options={{
+                headerTitle: 'My Courier',
+                headerBackButtonMenuEnabled: false,
+                headerBackVisible: false,
+              }}
+            />
+          </Stack>
+          <StatusBar style='auto' />
+        </SafeAreaProvider>
+      </ApplicationProvider>
+    </AuthProvider>
   );
 }

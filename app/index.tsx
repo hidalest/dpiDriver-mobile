@@ -6,11 +6,13 @@ import Login from '@/components/Login/Login';
 import data from '../data.json';
 import { API_CODE, SERVER_URL } from '@/config/apiConfig';
 import axios from 'axios';
+import { useAuth } from '@/context/authContext';
 
 const LoginScreen = () => {
   const {} = data.loginProps;
   const [isLoading, setIsLoading] = useState(false);
   const { token_not_valid } = API_CODE;
+  const { setUserData } = useAuth();
 
   const navigation = useNavigation();
 
@@ -49,6 +51,7 @@ const LoginScreen = () => {
         throw new Error(`HTTP error! status: ${responseUser.status}`);
       }
       const dataUser = await responseUser.json();
+      setUserData(dataUser);
       console.log(dataUser);
 
       if (dataUser.code === token_not_valid) {
