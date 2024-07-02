@@ -8,12 +8,13 @@ import { useAuth } from '@/context/authContext';
 function DashboardHeading(props: DashboardHeadingProps) {
   const { userPicPlaceholder, mainLogo, greetingHeader } = props;
   const { userData } = useAuth();
+  const { first_name } = userData.driver;
   return (
     <View style={styles.container}>
       {/* //TODO: delete the name Esteban and replace it with the actual user */}
       <Text>
         {greetingHeader}
-        {userData?.first_name ? userData?.first_name : 'User'}
+        {first_name}
       </Text>
 
       <Avatar

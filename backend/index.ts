@@ -23,10 +23,6 @@ app.get('/', (req: Request, res: Response) => {
     return res.status(401).json({ error: 'Authorization header missing' });
   }
 
-  if (!token) {
-    return res.status(401).json({ error: 'Token missing' });
-  }
-
   const fetchOptions = {
     method: 'GET',
     headers: {
@@ -36,13 +32,37 @@ app.get('/', (req: Request, res: Response) => {
   };
 
   fetch(`${apiEndpoint}/current-user/`, fetchOptions)
-    .then((response) => response.json())
-    .then((data) => res.json(data))
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      return fetch(`${apiEndpoint}/dashboard`, fetchOptions)
+        .then((dashboardResponse) => {
+          if (!dashboardResponse.ok) {
+            throw new Error(`HTTP error! status: ${dashboardResponse.status}`);
+          }
+          return dashboardResponse.json();
+        })
+        .then((dashboardData) => {
+          console.log('🚀 ~ .then ~ data:', data);
+          console.log('🚀 ~ .then ~ dashboardData:', dashboardData);
+          const getAllUserData = dashboardData.results.find(
+            //TODO change this for the acual id of the login user which is data.id
+            (item: any) => item.id === 7696
+          );
+          console.log('🚀 ~ .then ~ getAllUserData:', getAllUserData);
+
+          console.log(getAllUserData);
+          res.json(getAllUserData);
+        });
+    })
     .catch((error) => res.status(500).json({ error: error.message }));
 });
 
 app.post('/', (req: Request, res: Response) => {
-  console.log('Reaching');
   const data = req.body;
   console.log('request props: ', req.body);
   const fetchOptions = {

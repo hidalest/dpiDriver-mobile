@@ -51,12 +51,13 @@ const LoginScreen = () => {
         throw new Error(`HTTP error! status: ${responseUser.status}`);
       }
       const dataUser = await responseUser.json();
+      console.log('🚀 ~ LoginScreen ~ dataUser:', dataUser);
       setUserData(dataUser);
-      console.log(dataUser);
 
       if (dataUser.code === token_not_valid) {
         throw new Error('Invalid username and password');
       }
+
       // After successful login, reset the navigation stack and navigate to the dashboard
       navigation.dispatch(
         CommonActions.reset({

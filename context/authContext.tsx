@@ -1,24 +1,26 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 interface UserData {
-  id: number;
-  is_superuser: boolean;
-  first_name: string;
-  last_name: string;
-  is_staff: boolean;
-  date_joined: string;
-  personal_email: string;
-  email: string;
-  role: number;
-  role_name: string;
-  transporter_id: string;
-  mobile_number: string;
-  whatsapp_mobile_number: string;
-  driver_license: string;
-  driver_license_expiry: string;
-  date_of_birth: string;
-  training_delivered: boolean;
-  autocreated: boolean;
+  driver: {
+    id: number;
+    is_superuser: boolean;
+    first_name: string;
+    last_name: string;
+    is_staff: boolean;
+    date_joined: string;
+    personal_email: string;
+    email: string;
+    role: number;
+    role_name: string;
+    transporter_id: string;
+    mobile_number: string;
+    whatsapp_mobile_number: string;
+    driver_license: string;
+    driver_license_expiry: string;
+    date_of_birth: string;
+    training_delivered: boolean;
+    autocreated: boolean;
+  };
 }
 
 interface AuthContextType {
