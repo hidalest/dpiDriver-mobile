@@ -42,6 +42,10 @@ export default function Dashboard() {
     );
   }
 
+  const metrics = {
+    dcr: userData.dcr,
+  };
+
   const { first_name } = userData.driver;
   return (
     <FadeInView style={(styles.container, { backgroundColor: 'transparent' })}>
@@ -54,6 +58,8 @@ export default function Dashboard() {
               progressScore={75}
               style={styles.performance}
               dcr={userData.dcr}
+              // rescue={userData.dcr}
+              rescue={0}
             />
           </ShadowCard>
           <ShadowCard style={styles.newsContainer}>

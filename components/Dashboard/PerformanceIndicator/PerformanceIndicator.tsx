@@ -8,22 +8,26 @@ import { styles } from './Styles';
 import { evaluateMetric } from '@/utils/metricUtil';
 
 function PerformanceIndicator(props: PerformanceScoreProps) {
-  const { mainTitle, style, progressScore, performanceGrading } = props;
+  const { mainTitle, style, progressScore, performanceGrading, ...metrics } =
+    props;
   const [selectedIndex, setSelectedIndex] = useState<IndexPath | IndexPath[]>(
     new IndexPath(0)
   );
+  console.log('🚀 ~ PerformanceIndicator ~ metrics:', metrics);
 
   //@ts-ignore - For some reason Typescript is not detecting the row property and it is clearly mentioned on the UI Kitten component
   //https://akveo.github.io/react-native-ui-kitten/docs/components/select/overview#select
   const currentCategory = performanceGrading[selectedIndex.row];
-  console.log('🚀 ~ PerformanceIndicator ~ currentCategory:', currentCategory);
   let result;
+
+  const userChoice = metrics[currentCategory.abbreviation.toLowerCase()]; // type error here
+  console.log('🚀 ~ PerformanceIndicator ~ userChoice:', userChoice);
 
   const dcrMetric = performanceGrading.find(
     (metric) => metric.abbreviation === currentCategory.abbreviation
   );
   if (dcrMetric) {
-    result = evaluateMetric(dcrMetric, progressScore);
+    result = evaluateMetric(dcrMetric, userChoice);
   }
   return (
     <View style={[styles.container, style]}>
@@ -46,7 +50,7 @@ function PerformanceIndicator(props: PerformanceScoreProps) {
         </Select>
         <Calendar />
         <RadialProgress
-          percentage={progressScore}
+          percentage={userChoice}
           style={styles.radial}
           color={result?.color}
         />

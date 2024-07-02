@@ -19,4 +19,5 @@ export interface PerformanceScoreProps {
   style?: ViewStyle;
   performanceGrading: PerformanceMetric[];
   dcr: number;
+  rescue: number;
 }

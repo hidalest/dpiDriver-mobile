@@ -18,86 +18,86 @@
         "noTrainingsText": "No trainings found",
         "trainingDummyData": [
             {
-              "id": "1",
-              "name": "Introduction to Basic Driving",
-              "state": "completed",
-              "description": "Learn the basics of driving, a fundamental skill for your work.",
-              "duration": "2 hours",
-              "videoUrl": "https://www.youtube.com/watch?v=BwuLxPH8IDs"
+                "id": "1",
+                "name": "Introduction to Basic Driving",
+                "state": "completed",
+                "description": "Learn the basics of driving, a fundamental skill for your work.",
+                "duration": "2 hours",
+                "videoUrl": "https://www.youtube.com/watch?v=BwuLxPH8IDs"
             },
             {
-              "id": "2",
-              "name": "Safe Driving Practices",
-              "state": "in_progress",
-              "description": "Understand the essential safe driving techniques and practices for professional drivers.",
-              "duration": "3 hours",
-              "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                "id": "2",
+                "name": "Safe Driving Practices",
+                "state": "in_progress",
+                "description": "Understand the essential safe driving techniques and practices for professional drivers.",
+                "duration": "3 hours",
+                "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
             },
             {
-              "id": "3",
-              "name": "Cargo Handling and Securement",
-              "state": "pending",
-              "description": "Learn how to properly handle and secure cargo to ensure safety and compliance.",
-              "duration": "4 hours",
-              "videoUrl": "https://www.youtube.com/watch?v=ysz5S6PUM-U"
+                "id": "3",
+                "name": "Cargo Handling and Securement",
+                "state": "pending",
+                "description": "Learn how to properly handle and secure cargo to ensure safety and compliance.",
+                "duration": "4 hours",
+                "videoUrl": "https://www.youtube.com/watch?v=ysz5S6PUM-U"
             },
             {
-              "id": "4",
-              "name": "Customer Service Excellence",
-              "state": "completed",
-              "description": "Develop skills to provide excellent customer service in the transportation industry.",
-              "duration": "2.5 hours",
-              "videoUrl": "https://www.youtube.com/watch?v=3JZ_D3ELwOQ"
+                "id": "4",
+                "name": "Customer Service Excellence",
+                "state": "completed",
+                "description": "Develop skills to provide excellent customer service in the transportation industry.",
+                "duration": "2.5 hours",
+                "videoUrl": "https://www.youtube.com/watch?v=3JZ_D3ELwOQ"
             },
             {
-              "id": "5",
-              "name": "Defensive Driving Techniques",
-              "state": "in_progress",
-              "description": "Advanced defensive driving techniques to prevent accidents and ensure safety on the road.",
-              "duration": "3 hours",
-              "videoUrl": "https://www.youtube.com/watch?v=hY7m5jjJ9mM"
+                "id": "5",
+                "name": "Defensive Driving Techniques",
+                "state": "in_progress",
+                "description": "Advanced defensive driving techniques to prevent accidents and ensure safety on the road.",
+                "duration": "3 hours",
+                "videoUrl": "https://www.youtube.com/watch?v=hY7m5jjJ9mM"
             },
             {
-              "id": "6",
-              "name": "Regulatory Compliance and Safety",
-              "state": "completed",
-              "description": "Comprehensive overview of regulatory requirements and safety standards for transport drivers.",
-              "duration": "3.5 hours",
-              "videoUrl": "https://www.youtube.com/watch?v=7wtfhZwyrcc"
+                "id": "6",
+                "name": "Regulatory Compliance and Safety",
+                "state": "completed",
+                "description": "Comprehensive overview of regulatory requirements and safety standards for transport drivers.",
+                "duration": "3.5 hours",
+                "videoUrl": "https://www.youtube.com/watch?v=7wtfhZwyrcc"
             },
             {
-              "id": "7",
-              "name": "Fuel Efficiency and Eco-Driving",
-              "state": "pending",
-              "description": "Techniques to improve fuel efficiency and adopt eco-friendly driving habits.",
-              "duration": "2 hours",
-              "videoUrl": "https://www.youtube.com/watch?v=3tmd-ClpJxA"
+                "id": "7",
+                "name": "Fuel Efficiency and Eco-Driving",
+                "state": "pending",
+                "description": "Techniques to improve fuel efficiency and adopt eco-friendly driving habits.",
+                "duration": "2 hours",
+                "videoUrl": "https://www.youtube.com/watch?v=3tmd-ClpJxA"
             },
             {
-              "id": "8",
-              "name": "First Aid and Emergency Response",
-              "state": "completed",
-              "description": "Basic first aid training and emergency response procedures for transport drivers.",
-              "duration": "3 hours",
-              "videoUrl": "https://www.youtube.com/watch?v=e-ORhEE9VVg"
+                "id": "8",
+                "name": "First Aid and Emergency Response",
+                "state": "completed",
+                "description": "Basic first aid training and emergency response procedures for transport drivers.",
+                "duration": "3 hours",
+                "videoUrl": "https://www.youtube.com/watch?v=e-ORhEE9VVg"
             },
             {
-              "id": "9",
-              "name": "Vehicle Maintenance and Inspection",
-              "state": "in_progress",
-              "description": "Learn how to perform routine maintenance and inspections to ensure vehicle safety.",
-              "duration": "4 hours",
-              "videoUrl": "https://www.youtube.com/watch?v=FTQbiNvZqaY"
+                "id": "9",
+                "name": "Vehicle Maintenance and Inspection",
+                "state": "in_progress",
+                "description": "Learn how to perform routine maintenance and inspections to ensure vehicle safety.",
+                "duration": "4 hours",
+                "videoUrl": "https://www.youtube.com/watch?v=FTQbiNvZqaY"
             },
             {
-              "id": "10",
-              "name": "Handling Hazardous Materials",
-              "state": "pending",
-              "description": "Training on the safe handling and transportation of hazardous materials.",
-              "duration": "5 hours",
-              "videoUrl": "https://www.youtube.com/watch?v=9bZkp7q19f0"
-        }
-    ]
+                "id": "10",
+                "name": "Handling Hazardous Materials",
+                "state": "pending",
+                "description": "Training on the safe handling and transportation of hazardous materials.",
+                "duration": "5 hours",
+                "videoUrl": "https://www.youtube.com/watch?v=9bZkp7q19f0"
+            }
+        ]
     },
     "dashboardProps": {
         "importantNotificationsTitle": "Important Notifications",
@@ -323,8 +323,8 @@
                     ]
                 },
                 {
-                    "name": "Rescues",
-                    "abbreviation": "Rescues",
+                    "name": "Rescue",
+                    "abbreviation": "Rescue",
                     "thresholds": [
                         {
                             "condition": ">= 1",
@@ -333,21 +333,9 @@
                             "color": "#4F81BD"
                         },
                         {
-                            "condition": ">= 0.8",
-                            "title": "Good Score!",
-                            "message": "Good compliance!",
-                            "color": "#9BBB59"
-                        },
-                        {
-                            "condition": ">= 0.5",
-                            "title": "Medium Score",
-                            "message": "Needs improvement.",
-                            "color": "#F8C146"
-                        },
-                        {
                             "condition": "== 0",
                             "title": "Bad Score",
-                            "message": "Poor compliance.",
+                            "message": "You have a bad score for Rescues KPI",
                             "color": "#C0504D"
                         }
                     ]
