@@ -12,14 +12,11 @@ import ShadowCard from '@/components/UI/ShadowCard/ShadowCard';
 import { Colors } from '@/constants/Colors';
 import NewsCarousel from '@/components/Dashboard/NewsCarousel/NewsCarousel';
 import { FadeInView } from '@/utils/animations';
-
 import data from '../../data.json';
-import { useAuth } from '@/context/authContext';
 
 export default function Dashboard() {
   const { dashboardHeading, performanceScoreProps, newsNotificationsProps } =
     data.dashboardProps;
-  const { userData } = useAuth();
 
   const { newsHeading, newsBackgroundColor, news } = newsNotificationsProps;
   const colorScheme = useColorScheme(); // Get the current color scheme
@@ -34,34 +31,16 @@ export default function Dashboard() {
 
   console.log(colorScheme);
 
-  if (!userData) {
-    return (
-      <View style={[styles.container, { backgroundColor }]}>
-        <Text>Loading...</Text>
-      </View>
-    );
-  }
-
-  const { first_name } = userData.driver;
   return (
     <FadeInView style={(styles.container, { backgroundColor: 'transparent' })}>
       <View style={(styles.container, { backgroundColor: 'transparent' })}>
         <ScrollView>
-          <DashboardHeading {...dashboardHeading} name={first_name} />
+          <DashboardHeading {...dashboardHeading} />
           <ShadowCard>
             <PerformanceIndicator
               {...performanceScoreProps}
               progressScore={100}
               style={styles.performance}
-              dcr={userData.dcr}
-              rescue={userData.rescue}
-              dsb={userData.dsb}
-              mc={userData.morning_checklist}
-              dar={userData.dar}
-              pod={userData.pod}
-              cc={userData.cc}
-              sc={userData.sc}
-              oa={userData.ontime_attendance}
             />
           </ShadowCard>
           <ShadowCard style={styles.newsContainer}>

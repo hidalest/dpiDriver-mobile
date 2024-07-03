@@ -14,7 +14,9 @@ import {
 /**
  * Props for the Calendar component.
  */
-type CalendarProps = {};
+interface CalendarProps {
+  onDateChange: (date: Date) => void;
+}
 
 /**
  * Calendar component displays a week view with navigation buttons to move between weeks.
@@ -22,27 +24,15 @@ type CalendarProps = {};
  * @component
  * @example
  * return (
- *   <Calendar />
+ *   <Calendar onDateChange={(date) => console.log(date)} />
  * )
  */
-const Calendar: React.FC<CalendarProps> = () => {
+const Calendar = ({ onDateChange }: CalendarProps) => {
   const [currentDate, setCurrentDate] = useState<Date>(new Date());
 
-  /**
-   * Get the start of the week for a given date.
-   *
-   * @param {Date} date - The date for which to find the start of the week.
-   * @returns {Date} The start of the week.
-   */
   const getStartOfWeek = (date: Date): Date =>
     startOfWeek(date, { weekStartsOn: 0 });
 
-  /**
-   * Get all days of the week for a given date.
-   *
-   * @param {Date} date - The date for which to find the days of the week.
-   * @returns {Date[]} An array of dates representing the days of the week.
-   */
   const getDaysOfWeek = (date: Date): Date[] => {
     const startOfWeekDate = getStartOfWeek(date);
     return eachDayOfInterval({
@@ -51,21 +41,24 @@ const Calendar: React.FC<CalendarProps> = () => {
     });
   };
 
-  /**
-   * Handle moving to the previous week.
-   */
   const handleMoveBack = (): void => {
-    setCurrentDate((prevDate) => subWeeks(prevDate, 1));
+    setCurrentDate((prevDate) => {
+      const newDate = subWeeks(prevDate, 1);
+      onDateChange(newDate);
+      return newDate;
+    });
   };
 
-  /**
-   * Handle moving to the next week.
-   * Ensures not to move past the current week.
-   */
   const handleMoveForward = (): void => {
     setCurrentDate((prevDate) => {
       const nextWeek = addWeeks(prevDate, 1);
-      return isAfter(nextWeek, new Date()) ? prevDate : nextWeek;
+      if (isAfter(nextWeek, new Date())) {
+        onDateChange(prevDate);
+        return prevDate;
+      } else {
+        onDateChange(nextWeek);
+        return nextWeek;
+      }
     });
   };
 

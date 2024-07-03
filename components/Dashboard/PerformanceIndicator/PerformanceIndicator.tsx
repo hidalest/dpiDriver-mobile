@@ -6,15 +6,41 @@ import { PerformanceScoreProps } from './Interface';
 import RadialProgress from '@/components/UI/RadialProgress/RadialProgress';
 import { styles } from './Styles';
 import { evaluateMetric } from '@/utils/metricUtil';
+import { useAuth } from '@/context/authContext';
 
 function PerformanceIndicator(props: PerformanceScoreProps) {
-  const { mainTitle, style, progressScore, performanceGrading, ...metrics } =
-    props;
+  const { mainTitle, style, progressScore, performanceGrading } = props;
   const [selectedIndex, setSelectedIndex] = useState<IndexPath | IndexPath[]>(
     new IndexPath(0)
   );
-  console.log('🚀 ~ PerformanceIndicator ~ metrics:', metrics);
+  const [currentDate, setCurrentDate] = useState<Date>(new Date());
+  const { userData } = useAuth();
 
+  if (!userData) {
+    return (
+      <View style={[styles.container]}>
+        <Text>Loading...</Text>
+      </View>
+    );
+  }
+
+  const { first_name } = userData.driver;
+  console.log(
+    '🚀 ~ PerformanceIndicator ~ userData.created:',
+    userData.created
+  );
+  // Important: Any metrics that wants to be added has to be also add in the data.json file for the conditions
+  const metrics = {
+    dcr: userData.dcr,
+    rescue: userData.rescue,
+    dsb: userData.dsb,
+    mc: userData.morning_checklist,
+    dar: userData.dar,
+    pod: userData.pod,
+    cc: userData.cc,
+    sc: userData.sc,
+    oa: userData.ontime_attendance,
+  };
   //@ts-ignore - For some reason Typescript is not detecting the row property and it is clearly mentioned on the UI Kitten component
   //https://akveo.github.io/react-native-ui-kitten/docs/components/select/overview#select
   const currentCategory = performanceGrading[selectedIndex.row];
@@ -32,6 +58,12 @@ function PerformanceIndicator(props: PerformanceScoreProps) {
   if (dcrMetric) {
     result = evaluateMetric(dcrMetric, userScore);
   }
+
+  const handleDateChange = (date: Date) => {
+    setCurrentDate(date);
+    // Handle any additional logic based on the new date
+  };
+
   return (
     <View style={[styles.container, style]}>
       <Card style={styles.cardContainer}>
@@ -51,7 +83,7 @@ function PerformanceIndicator(props: PerformanceScoreProps) {
             );
           })}
         </Select>
-        <Calendar />
+        <Calendar onDateChange={handleDateChange} />
         <RadialProgress
           percentage={progressScore}
           style={styles.radial}

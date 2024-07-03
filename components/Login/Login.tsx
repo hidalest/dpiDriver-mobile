@@ -21,8 +21,10 @@ const Login = (props: LoginProps) => {
     forgotButton,
     forgotPasswordModalInstructions,
   } = props;
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+
+  /* TODO: Remove the values on the username and password for empty values once development is done */
+  const [username, setUsername] = useState('rostyslav.budilka+da@appvales.com');
+  const [password, setPassword] = useState('PasswordTemp456!');
   const [showPassword, setShowPassword] = useState(false);
 
   const toggleShowPassword = () => {

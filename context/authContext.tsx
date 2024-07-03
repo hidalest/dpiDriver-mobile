@@ -31,6 +31,7 @@ interface UserData {
   pod: number | null;
   cc: number | null;
   sc: number | null;
+  created: Date;
 }
 
 interface AuthContextType {

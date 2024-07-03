@@ -18,13 +18,13 @@ export interface PerformanceScoreProps {
   progressScore: number;
   style?: ViewStyle;
   performanceGrading: PerformanceMetric[];
-  dcr: number | null;
-  rescue: number | null;
-  dsb: number | null;
-  oa: number | null;
-  mc: number | null;
-  dar: number | null;
-  pod: number | null;
-  cc: number | null;
-  sc: number | null;
+  // dcr: number | null;
+  // rescue: number | null;
+  // dsb: number | null;
+  // oa: number | null;
+  // mc: number | null;
+  // dar: number | null;
+  // pod: number | null;
+  // cc: number | null;
+  // sc: number | null;
 }
