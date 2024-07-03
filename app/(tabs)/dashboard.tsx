@@ -15,8 +15,12 @@ import { FadeInView } from '@/utils/animations';
 import data from '../../data.json';
 
 export default function Dashboard() {
-  const { dashboardHeading, performanceScoreProps, newsNotificationsProps } =
-    data.dashboardProps;
+  const {
+    dashboardHeading,
+    performanceScoreProps,
+    newsNotificationsProps,
+    feedbackProps,
+  } = data.dashboardProps;
 
   const { newsHeading, newsBackgroundColor, news } = newsNotificationsProps;
   const colorScheme = useColorScheme(); // Get the current color scheme
@@ -42,6 +46,12 @@ export default function Dashboard() {
               progressScore={100}
               style={styles.performance}
             />
+          </ShadowCard>
+          {/* Feedback */}
+          <ShadowCard style={styles.newsContainer}>
+            <Text style={styles.newsHeading}>
+              {feedbackProps.feedbackHeading}
+            </Text>
           </ShadowCard>
           <ShadowCard style={styles.newsContainer}>
             <Text style={styles.newsHeading}>{newsHeading}</Text>
