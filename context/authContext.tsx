@@ -22,6 +22,15 @@ interface UserData {
     autocreated: boolean;
   };
   dcr: number;
+  rescue: number | null;
+  dsb: number | null;
+  ontime_attendance: number | null;
+  launchpad_support: number | null;
+  morning_checklist: number | null;
+  dar: number | null;
+  pod: number | null;
+  cc: number | null;
+  sc: number | null;
 }
 
 interface AuthContextType {

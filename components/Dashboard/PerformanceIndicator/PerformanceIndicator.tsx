@@ -20,14 +20,17 @@ function PerformanceIndicator(props: PerformanceScoreProps) {
   const currentCategory = performanceGrading[selectedIndex.row];
   let result;
 
-  const userChoice = metrics[currentCategory.abbreviation.toLowerCase()]; // type error here
-  console.log('🚀 ~ PerformanceIndicator ~ userChoice:', userChoice);
+  //@ts-ignore
+  // Type Error on userScore and we dont know why
+  // "¯\\_(ツ)_/¯",
+  const userScore = metrics[currentCategory.abbreviation.toLowerCase()];
 
   const dcrMetric = performanceGrading.find(
     (metric) => metric.abbreviation === currentCategory.abbreviation
   );
+
   if (dcrMetric) {
-    result = evaluateMetric(dcrMetric, userChoice);
+    result = evaluateMetric(dcrMetric, userScore);
   }
   return (
     <View style={[styles.container, style]}>
@@ -50,9 +53,10 @@ function PerformanceIndicator(props: PerformanceScoreProps) {
         </Select>
         <Calendar />
         <RadialProgress
-          percentage={userChoice}
+          percentage={progressScore}
           style={styles.radial}
           color={result?.color}
+          value={Math.floor(userScore)}
         />
         <Text style={styles.subHeading}>{result?.title}</Text>
         <Text style={styles.message}>{result?.message}</Text>
