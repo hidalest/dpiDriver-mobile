@@ -18,6 +18,7 @@ interface RadialProgressProps {
   backgroundColor?: string;
   /** Additional styles for the container. */
   style?: ViewStyle;
+  value: number;
 }
 
 /**
@@ -51,6 +52,7 @@ const RadialProgress = ({
   color = 'blue',
   backgroundColor = '#e6e6e6',
   style,
+  value,
 }: RadialProgressProps) => {
   const radius = (size - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
@@ -81,7 +83,7 @@ const RadialProgress = ({
         />
       </Svg>
       <View style={styles.textContainer}>
-        <Text style={styles.text}>{`${percentage}%`}</Text>
+        <Text style={styles.text}>{`${value}`}</Text>
       </View>
     </View>
   );

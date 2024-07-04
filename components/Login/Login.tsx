@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { Layout, Text, Input, Button } from '@ui-kitten/components';
+import React, { Fragment, useState } from 'react';
+import { Layout, Text, Input, Button, Spinner } from '@ui-kitten/components';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { Image } from 'react-native';
+import { Image, StyleSheet, View } from 'react-native';
 import { FadeInView, ScaleInView } from '@/utils/animations';
 import { Colors } from '@/constants/Colors';
 import { LoginProps } from './Interface';
@@ -10,6 +10,7 @@ import { ModalWithBackdropShowcase } from '../UI/ModalWithBackdropShowcase';
 
 const Login = (props: LoginProps) => {
   const {
+    isLoading,
     onSignIn,
     loginHeader,
     loginLogoAltText,
@@ -20,8 +21,10 @@ const Login = (props: LoginProps) => {
     forgotButton,
     forgotPasswordModalInstructions,
   } = props;
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+
+  /* TODO: Remove the values on the username and password for empty values once development is done */
+  const [username, setUsername] = useState('rostyslav.budilka+da@appvales.com');
+  const [password, setPassword] = useState('PasswordTemp456!');
   const [showPassword, setShowPassword] = useState(false);
 
   const toggleShowPassword = () => {
@@ -79,8 +82,16 @@ const Login = (props: LoginProps) => {
           description={forgotPasswordModalInstructions}
           buttonText='Ok'
         />
-        <Button size='large' onPress={handleSignIn} style={styles.button}>
-          {loginButtonText}
+        <Button
+          size='large'
+          onPress={handleSignIn}
+          style={styles.button}
+          disabled={isLoading}
+        >
+          <Fragment>
+            {!isLoading && <Text>{loginButtonText}</Text>}
+            {isLoading && <Spinner status='control' />}
+          </Fragment>
         </Button>
       </ScaleInView>
     </Layout>
