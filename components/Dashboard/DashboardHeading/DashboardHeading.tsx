@@ -23,7 +23,7 @@ function DashboardHeading(props: DashboardHeadingProps) {
       {/* //TODO: delete the name Esteban and replace it with the actual user */}
       <Text>
         {greetingHeader}
-        {first_name}
+        {first_name} 👋
       </Text>
 
       <Avatar

@@ -23,6 +23,7 @@ export default function Dashboard() {
   } = data.dashboardProps;
 
   const { newsHeading, newsBackgroundColor, news } = newsNotificationsProps;
+  const { feedbackHeading, quadrantTitle } = feedbackProps;
   const colorScheme = useColorScheme(); // Get the current color scheme
 
   // Define the background color based on the color scheme
@@ -40,6 +41,7 @@ export default function Dashboard() {
       <View style={(styles.container, { backgroundColor: 'transparent' })}>
         <ScrollView>
           <DashboardHeading {...dashboardHeading} />
+          {/* Performance Indicator */}
           <ShadowCard>
             <PerformanceIndicator
               {...performanceScoreProps}
@@ -48,11 +50,15 @@ export default function Dashboard() {
             />
           </ShadowCard>
           {/* Feedback */}
-          <ShadowCard style={styles.newsContainer}>
-            <Text style={styles.newsHeading}>
-              {feedbackProps.feedbackHeading}
-            </Text>
-          </ShadowCard>
+          {/* <ShadowCard style={styles.newsContainer}>
+            <Text style={styles.newsHeading}>{feedbackHeading}</Text>
+            <View style={styles.feedbackProperty}>
+              <Text style={styles.feedbackPropertyHeading}>
+                {quadrantTitle}
+              </Text>
+              <Text style={styles.feedbackPropertyValue}>Team Player</Text>
+            </View>
+          </ShadowCard> */}
           <ShadowCard style={styles.newsContainer}>
             <Text style={styles.newsHeading}>{newsHeading}</Text>
             <NewsCarousel
@@ -88,5 +94,18 @@ const styles = StyleSheet.create({
   newsHeading: {
     fontSize: 20,
     fontWeight: 'bold',
+  },
+  feedbackProperty: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: 'red',
+  },
+  feedbackPropertyHeading: {
+    fontWeight: 'bold',
+    fontSize: 16,
+  },
+  feedbackPropertyValue: {
+    fontSize: 16,
   },
 });
