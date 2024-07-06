@@ -21,7 +21,8 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.hidalest.dpiDriverMobile"
+      "package": "com.hidalest.dpiDriverMobile",
+      "googleServicesFile": "/android/app/google-services.json"
     },
     "web": {
       "bundler": "metro",
