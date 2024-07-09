@@ -21,6 +21,13 @@ export default function RootLayout() {
                 headerBackVisible: false,
               }}
             />
+            <Stack.Screen
+              name="[trainingId]/index"
+              options={{
+                headerTitle: 'Training Details',
+                headerBackVisible: true,
+              }}
+            />
           </Stack>
           <StatusBar style='auto' />
         </SafeAreaProvider>
