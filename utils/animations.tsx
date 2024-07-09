@@ -6,6 +6,7 @@ import type { ViewStyle } from 'react-native';
 type FadeInViewProps = PropsWithChildren<{style: ViewStyle, duration?: number}>;
 type SpringInViewProps = PropsWithChildren<{ style: ViewStyle }>;
 type ScaleInViewProps = PropsWithChildren<{ style: ViewStyle, delay?: number}>;
+type TranslateFromBotToTopProps = PropsWithChildren<{ style: ViewStyle, delay?: number, duration?: number, children: React.ReactNode}>;
 
 
 const FadeInView: React.FC<FadeInViewProps> = props => {
@@ -76,4 +77,27 @@ const ScaleInView: React.FC<ScaleInViewProps> = (props) => {
   );
 };
 
-export { FadeInView, SpringInView, ScaleInView }
+const TranslateFromBotToTop: React.FC<TranslateFromBotToTopProps> = (props) => {
+  const translateYAnim = useRef(new Animated.Value(500)).current; 
+  const { delay, duration } = props;
+
+  useEffect(() => {
+    Animated.timing(translateYAnim, {
+      toValue: 0,
+      duration: duration || 300, // Default duration is 300ms
+      delay: delay || 0,
+      useNativeDriver: true,
+    }).start();
+  }, [translateYAnim, delay, duration]);
+
+  return (
+    <Animated.View
+      style={{ ...props.style, transform: [{ translateY: translateYAnim }] }}
+    >
+      {props.children}
+    </Animated.View>
+  );
+};
+
+
+export { FadeInView, SpringInView, ScaleInView, TranslateFromBotToTop }
