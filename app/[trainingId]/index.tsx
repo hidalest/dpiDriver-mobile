@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { StyleSheet, View } from 'react-native'
 import React from 'react'
 import { useLocalSearchParams } from 'expo-router';
@@ -14,20 +13,6 @@ const TrainingScreen = () => {
     return (
       <View style={styles.container}>
         <TrainingItem training={trainingData} descHeader={descHeader} lengthText={lengthText}/>
-=======
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import { useLocalSearchParams } from 'expo-router';
-import TrainingItem from '@/components/TrainingItem/TrainingItem';
-
-const TrainingScreen = () => {
-    const { training } = useLocalSearchParams();
-    const trainingData = training && typeof training === 'string' ? JSON.parse(training) : {};
-  
-    return (
-      <View style={styles.container}>
-        <TrainingItem training={trainingData}/>
->>>>>>> 3da3716fe960ddb62c068f23e017236f081b58a0
       </View>
     );
 }
