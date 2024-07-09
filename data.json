@@ -99,6 +99,10 @@
             }
         ]
     },
+    "trainingItemPageProps": {
+        "descHeader": "About this training",
+        "lengthText": "Length:"
+    },
     "dashboardProps": {
         "importantNotificationsTitle": "Important Notifications",
         "dashboardHeading": {
