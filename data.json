@@ -101,7 +101,12 @@
     },
     "trainingItemPageProps": {
         "descHeader": "About this training",
-        "lengthText": "Length:"
+        "lengthText": "Length:",
+        "acknowledgedText": "Acknowledged",
+        "acknowledgeTrainingText": "Acknowledge training",
+        "modalQuestionText": "Do you confirm that you have understood the information presented in this training?",
+        "modalConfirmText": "Yes, I confirm",
+        "modalDenyText": "No, I need more time"
     },
     "dashboardProps": {
         "importantNotificationsTitle": "Important Notifications",

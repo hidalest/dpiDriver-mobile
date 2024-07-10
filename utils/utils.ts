@@ -1,5 +1,5 @@
 const formatState = (state: string) => {
-    switch(state) {
+    switch(state.toUpperCase()) {
         case 'ALL': return 'All Trainings';
         case 'COMPLETED': return 'Completed';
         case 'IN_PROGRESS': return 'In Progress';

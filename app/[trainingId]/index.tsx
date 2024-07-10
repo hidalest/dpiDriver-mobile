@@ -5,14 +5,33 @@ import TrainingItem from '@/components/TrainingItem/TrainingItem';
 import data from '../../data.json';
 
 const TrainingScreen = () => {
-    const { trainingItemPageProps: {descHeader, lengthText} } = data
+    const { trainingItemPageProps: { 
+          descHeader, 
+          lengthText, 
+          acknowledgedText, 
+          acknowledgeTrainingText, 
+          modalConfirmText, 
+          modalDenyText, 
+          modalQuestionText
+        } 
+    } = data
+
 
     const { training } = useLocalSearchParams();
     const trainingData = training && typeof training === 'string' ? JSON.parse(training) : {};
 
     return (
       <View style={styles.container}>
-        <TrainingItem training={trainingData} descHeader={descHeader} lengthText={lengthText}/>
+        <TrainingItem 
+          training={trainingData} 
+          descHeader={descHeader} 
+          lengthText={lengthText}
+          acknowledgeTrainingText={acknowledgeTrainingText}
+          acknowledgedText={acknowledgedText}
+          modalConfirmText={modalConfirmText}
+          modalDenyText={modalDenyText}
+          modalQuestionText={modalQuestionText}  
+        />
       </View>
     );
 }
