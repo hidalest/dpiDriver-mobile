@@ -7,14 +7,17 @@ import data from '../data.json';
 import { API_CODE, SERVER_URL } from '@/config/apiConfig';
 import axios from 'axios';
 import { useAuth } from '@/context/authContext';
+import { usePushNotifications } from '@/hooks/usePushNotifications';
 
 const LoginScreen = () => {
   const {} = data.loginProps;
   const [isLoading, setIsLoading] = useState(false);
   const { token_not_valid } = API_CODE;
   const { setUserData } = useAuth();
-
+  const { expoPushToken, notification } = usePushNotifications();
   const navigation = useNavigation();
+
+  const dataNotification = JSON.stringify(notification, undefined, 2);
 
   const handleSignIn = async (
     email: string,

@@ -88,6 +88,7 @@
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				D65327D7A22EEC0BE12398D9 /* Pods */,
 				D7E4C46ADA2E9064B798F356 /* ExpoModulesProviders */,
+				332CA929A6674705B90A62E2 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -135,6 +136,14 @@
 			);
 			name = ExpoModulesProviders;
 			sourceTree = "<group>";
+		};
+		332CA929A6674705B90A62E2 /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -303,7 +312,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hidalest.dpiDriverMobile";
-				PRODUCT_NAME = "dpiDriverMobile";
+				PRODUCT_NAME = "MyCourier";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -330,7 +339,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hidalest.dpiDriverMobile";
-				PRODUCT_NAME = "dpiDriverMobile";
+				PRODUCT_NAME = "MyCourier";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				TARGETED_DEVICE_FAMILY = "1,2";
