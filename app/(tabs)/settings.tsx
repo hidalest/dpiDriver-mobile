@@ -17,32 +17,28 @@ function Settings() {
       })
     );
   };
+
+  if (!userData) {
+    return <p>Loading...</p>;
+  }
+  const driver = userData.driver;
+  const driverDataJoined = driver.date_joined;
   return (
     <View>
       <View style={styles.userInfo}>
         <View style={styles.userInfoContainer}>
           <Text style={styles.userInfoHeader}>Name: </Text>
           <Text style={styles.userInfoData}>
-            {userData?.first_name} {userData?.last_name}
+            {driver?.first_name} {driver?.last_name}
           </Text>
         </View>
         <View style={styles.userInfoContainer}>
-          <Text style={styles.userInfoHeader}>Mobile Number: </Text>
-          <Text style={styles.userInfoData}>{userData?.mobile_number}</Text>
-        </View>
-        <View style={styles.userInfoContainer}>
-          <Text style={styles.userInfoHeader}>Email: </Text>
-          <Text style={styles.userInfoData}>{userData?.email}</Text>
+          <Text style={styles.userInfoHeader}>Your Transporter ID: </Text>
+          <Text style={styles.userInfoData}>{driver?.transporter_id}</Text>
         </View>
         <View style={styles.userInfoContainer}>
           <Text style={styles.userInfoHeader}>Date Joined: </Text>
-          <Text style={styles.userInfoData}>{userData?.date_joined}</Text>
-        </View>
-        <View style={styles.userInfoContainer}>
-          <Text style={styles.userInfoHeader}>Driver License Expiry: </Text>
-          <Text style={styles.userInfoData}>
-            {userData?.driver_license_expiry}
-          </Text>
+          <Text style={styles.userInfoData}>{driver?.date_joined}</Text>
         </View>
       </View>
       <Button style={styles.logoutBtn} onPress={handleLogout}>

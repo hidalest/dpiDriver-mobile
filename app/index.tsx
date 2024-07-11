@@ -1,13 +1,20 @@
+// src/screens/LoginScreen.tsx
+
 import { CommonActions } from '@react-navigation/native';
 import { Link, useNavigation } from 'expo-router';
 import React, { useState } from 'react';
 import { View, StyleSheet } from 'react-native';
 import Login from '@/components/Login/Login';
 import data from '../data.json';
-import { API_CODE, SERVER_URL } from '@/config/apiConfig';
-import axios from 'axios';
 import { useAuth } from '@/context/authContext';
 import { usePushNotifications } from '@/hooks/usePushNotifications';
+import { getWeekNumber } from '@/utils/getWeekNumber';
+import {
+  getAuthToken,
+  getCurrentUser,
+  getDashboardData,
+} from '@/utils/apiService';
+import { API_CODE } from '@/config/apiConfig';
 
 const LoginScreen = () => {
   const {} = data.loginProps;
@@ -23,39 +30,25 @@ const LoginScreen = () => {
     email: string,
     password: string
   ): Promise<void> => {
+    const todayDate = new Date();
+    const todayWeekNumber = getWeekNumber(todayDate);
+    const currentYear = todayDate.getFullYear();
     try {
       setIsLoading(true);
 
-      // FETCH TO GET THE AUTH TOKEN
-      const responseToken = await fetch(SERVER_URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email,
-          password,
-        }),
-      });
-      if (!responseToken.ok) {
-        throw new Error(`HTTP error! status: ${responseToken.status}`);
-      }
-      const authToken = await responseToken.json();
+      const authToken = await getAuthToken(email, password);
+      const dataUser = await getCurrentUser(authToken.access);
 
-      // FETCH OF THE CURRENT USER
-      const responseUser = await fetch(SERVER_URL, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `${authToken.access}`,
-        },
-      });
-      if (!responseUser.ok) {
-        throw new Error(`HTTP error! status: ${responseUser.status}`);
-      }
-      const dataUser = await responseUser.json();
-      console.log('🚀 ~ LoginScreen ~ dataUser:', dataUser);
-      setUserData(dataUser);
+      const userTransportId = dataUser.transport_id;
+      const dashboardData = await getDashboardData(
+        authToken.access,
+        currentYear,
+        // TODO: replace this with userTransportId and todayWeekNumber when we have actual data,
+        'A1AXYAQM887EIE', // userTransportId
+        21 //todayWeekNumber
+      );
+      const [foundUserData] = dashboardData.results;
+      setUserData(foundUserData);
 
       if (dataUser.code === token_not_valid) {
         throw new Error('Invalid username and password');
