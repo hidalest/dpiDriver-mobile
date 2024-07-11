@@ -4,10 +4,17 @@ import React, { useState } from 'react';
 import { View, StyleSheet } from 'react-native';
 import Login from '@/components/Login/Login';
 import data from '../data.json';
-import { API_CODE, SERVER_URL } from '@/config/apiConfig';
+import {
+  API_CODE,
+  AUTH_TOKEN_URL,
+  CURRENT_USER_URL,
+  DASHBOARD_URL,
+  SERVER_URL,
+} from '@/config/apiConfig';
 import axios from 'axios';
 import { useAuth } from '@/context/authContext';
 import { usePushNotifications } from '@/hooks/usePushNotifications';
+import { getWeekNumber } from '@/utils/getWeekNumber';
 
 const LoginScreen = () => {
   const {} = data.loginProps;
@@ -23,11 +30,14 @@ const LoginScreen = () => {
     email: string,
     password: string
   ): Promise<void> => {
+    const todayDate = new Date();
+    const todayWeekNumber = getWeekNumber(todayDate);
+    const currentYear = todayDate.getFullYear();
     try {
       setIsLoading(true);
 
       // FETCH TO GET THE AUTH TOKEN
-      const responseToken = await fetch(SERVER_URL, {
+      const responseToken = await fetch(AUTH_TOKEN_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -43,19 +53,34 @@ const LoginScreen = () => {
       const authToken = await responseToken.json();
 
       // FETCH OF THE CURRENT USER
-      const responseUser = await fetch(SERVER_URL, {
+      const responseUser = await fetch(CURRENT_USER_URL, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `${authToken.access}`,
+          Authorization: `Bearer ${authToken.access}`,
         },
       });
       if (!responseUser.ok) {
         throw new Error(`HTTP error! status: ${responseUser.status}`);
       }
       const dataUser = await responseUser.json();
-      console.log('🚀 ~ LoginScreen ~ dataUser:', dataUser);
-      setUserData(dataUser);
+
+      const userTransportId = dataUser.transport_id;
+      // TODO: change the search query with the userTransportId when we have the correct data and also change the current week todayWeekNumber
+      const responseDashboard = await fetch(
+        `${DASHBOARD_URL}?week=21&year=${currentYear}&search=A2OI5CH6ISLHJC`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${authToken.access}`,
+          },
+        }
+      );
+
+      const dashboardData = await responseDashboard.json();
+      const [foundUserData] = dashboardData.results;
+      setUserData(foundUserData);
 
       if (dataUser.code === token_not_valid) {
         throw new Error('Invalid username and password');
