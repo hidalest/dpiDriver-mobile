@@ -50,7 +50,7 @@ export default function Dashboard() {
             />
           </ShadowCard>
           {/* Feedback */}
-          {/* <ShadowCard style={styles.newsContainer}>
+          <ShadowCard style={styles.newsContainer}>
             <Text style={styles.newsHeading}>{feedbackHeading}</Text>
             <View style={styles.feedbackProperty}>
               <Text style={styles.feedbackPropertyHeading}>
@@ -58,7 +58,7 @@ export default function Dashboard() {
               </Text>
               <Text style={styles.feedbackPropertyValue}>Team Player</Text>
             </View>
-          </ShadowCard> */}
+          </ShadowCard>
           <ShadowCard style={styles.newsContainer}>
             <Text style={styles.newsHeading}>{newsHeading}</Text>
             <NewsCarousel

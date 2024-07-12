@@ -7,6 +7,7 @@ import RadialProgress from '@/components/UI/RadialProgress/RadialProgress';
 import { styles } from './Styles';
 import { evaluateMetric } from '@/utils/metricUtil';
 import { useAuth } from '@/context/authContext';
+import { getWeekNumber } from '@/utils/getWeekNumber';
 
 function PerformanceIndicator(props: PerformanceScoreProps) {
   const { mainTitle, style, progressScore, performanceGrading } = props;
@@ -16,20 +17,58 @@ function PerformanceIndicator(props: PerformanceScoreProps) {
   const [currentDate, setCurrentDate] = useState<Date>(new Date());
   const { userData } = useAuth();
 
+  //@ts-ignore - For some reason Typescript is not detecting the row property and it is clearly mentioned on the UI Kitten component
+  //https://akveo.github.io/react-native-ui-kitten/docs/components/select/overview#select
+  const currentCategory = performanceGrading[selectedIndex.row];
+
+  let result;
+
+  const handleDateChange = (date: Date) => {
+    setCurrentDate(date);
+    const selectedWeek = getWeekNumber(date);
+    // Handle any additional logic based on the new date
+  };
+
+  const renderSelectItems = () => {
+    return performanceGrading.map((category, index) => (
+      <SelectItem key={`category-option-${index}`} title={category.name} />
+    ));
+  };
+
+  const renderCardContent = () => {
+    return (
+      <>
+        <Text style={styles.heading}>{mainTitle}</Text>
+        <Select
+          selectedIndex={selectedIndex}
+          onSelect={(index) => setSelectedIndex(index)}
+          //@ts-ignore - For some reason Typescript is not detecting the row property and it is clearly mentioned on the UI Kitten component
+          //https://akveo.github.io/react-native-ui-kitten/docs/components/select/overview#select
+          value={performanceGrading[selectedIndex.row]?.name}
+          style={styles.performanceCategory}
+        >
+          {renderSelectItems()}
+        </Select>
+        <Calendar onDateChange={handleDateChange} />
+      </>
+    );
+  };
+
+  // In case we don't have any data to show from that week
   if (!userData) {
     return (
       <View style={[styles.container]}>
-        <Text>Loading...</Text>
+        <View style={[styles.container, style]}>
+          <Card style={styles.cardContainer}>
+            {renderCardContent()}
+            <Text>Sorry, we don't have data from this week</Text>
+          </Card>
+        </View>
       </View>
     );
   }
 
-  const { first_name } = userData.driver;
-  console.log(
-    '🚀 ~ PerformanceIndicator ~ userData.created:',
-    userData.created
-  );
-  // Important: Any metrics that wants to be added has to be also add in the data.json file for the conditions
+  // Important: Any metrics that wants to be added here has to be also add in the data.json file for the conditions
   const metrics = {
     dcr: userData.dcr,
     rescue: userData.rescue,
@@ -41,10 +80,6 @@ function PerformanceIndicator(props: PerformanceScoreProps) {
     sc: userData.sc,
     oa: userData.ontime_attendance,
   };
-  //@ts-ignore - For some reason Typescript is not detecting the row property and it is clearly mentioned on the UI Kitten component
-  //https://akveo.github.io/react-native-ui-kitten/docs/components/select/overview#select
-  const currentCategory = performanceGrading[selectedIndex.row];
-  let result;
 
   //@ts-ignore
   // Type Error on userScore and we dont know why
@@ -59,31 +94,10 @@ function PerformanceIndicator(props: PerformanceScoreProps) {
     result = evaluateMetric(dcrMetric, userScore);
   }
 
-  const handleDateChange = (date: Date) => {
-    setCurrentDate(date);
-    // Handle any additional logic based on the new date
-  };
-
   return (
     <View style={[styles.container, style]}>
       <Card style={styles.cardContainer}>
-        <Text style={styles.heading}>{mainTitle}</Text>
-        <Select
-          selectedIndex={selectedIndex}
-          onSelect={(index) => setSelectedIndex(index)}
-          value={currentCategory.name}
-          style={styles.performanceCategory}
-        >
-          {performanceGrading.map((category, index) => {
-            return (
-              <SelectItem
-                key={`category-option-${index}`}
-                title={category.name}
-              />
-            );
-          })}
-        </Select>
-        <Calendar onDateChange={handleDateChange} />
+        {renderCardContent()}
         <RadialProgress
           percentage={progressScore}
           style={styles.radial}
