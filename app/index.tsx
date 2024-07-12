@@ -48,7 +48,11 @@ const LoginScreen = () => {
         21
       );
       const [foundUserData] = dashboardData.results;
-      setUserData(foundUserData);
+      setUserData({
+        dashboard: foundUserData,
+        authToken: authToken.access,
+        dataUser,
+      });
 
       if (dataUser.code === token_not_valid) {
         throw new Error('Invalid username and password');

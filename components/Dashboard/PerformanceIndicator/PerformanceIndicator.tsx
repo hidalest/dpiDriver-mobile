@@ -70,15 +70,15 @@ function PerformanceIndicator(props: PerformanceScoreProps) {
 
   // Important: Any metrics that wants to be added here has to be also add in the data.json file for the conditions
   const metrics = {
-    dcr: userData.dcr,
-    rescue: userData.rescue,
-    dsb: userData.dsb,
-    mc: userData.morning_checklist,
-    dar: userData.dar,
-    pod: userData.pod,
-    cc: userData.cc,
-    sc: userData.sc,
-    oa: userData.ontime_attendance,
+    dcr: userData.dashboard.dcr,
+    rescue: userData.dashboard.rescue,
+    dsb: userData.dashboard.dsb,
+    mc: userData.dashboard.morning_checklist,
+    dar: userData.dashboard.dar,
+    pod: userData.dashboard.pod,
+    cc: userData.dashboard.cc,
+    sc: userData.dashboard.sc,
+    oa: userData.dashboard.ontime_attendance,
   };
 
   //@ts-ignore
