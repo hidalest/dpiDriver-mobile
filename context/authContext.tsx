@@ -32,6 +32,7 @@ interface UserData {
   cc: number | null;
   sc: number | null;
   created: Date;
+  text_message: string 
 }
 
 interface AuthContextType {

@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Tabs } from 'expo-router';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Linking } from 'react-native';
 import { Badge } from 'react-native-elements';
+import { useAuth } from '@/context/authContext';
+import Toast from 'react-native-toast-message';
+import { parseMessage } from '@/utils/utils';
 
 export default function TabLayout() {
   // Replace this with your actual notification count logic
   const [notificationCount, setNotificationCount] = useState(12);
+
+  const { userData } = useAuth();
 
   // Fetch or update notification count logic here
   useEffect(() => {
@@ -17,6 +22,26 @@ export default function TabLayout() {
 
     fetchNotificationCount();
   }, []);
+
+  useEffect(() => {
+    if(userData) {
+      const { userName, link, text} = parseMessage(userData?.text_message)
+
+      Toast.show({
+        text1: `Dear ${userName}`,
+        text2: `${text}\n${link}`,
+        type: 'info',
+        autoHide: false,
+        onPress: () => {
+          Toast.hide()
+          Linking.openURL(link).catch((err) => {
+            console.log(`Failed to open URL: ${err}`);
+          })
+        },
+      });
+    }
+    
+  }, [])
 
   return (
     <Tabs
@@ -92,5 +117,5 @@ const styles = StyleSheet.create({
   },
   badgeText: {
     fontSize: 12,
-  },
+  }
 });
