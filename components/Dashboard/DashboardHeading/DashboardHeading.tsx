@@ -17,7 +17,7 @@ function DashboardHeading(props: DashboardHeadingProps) {
     );
   }
 
-  const { first_name } = userData.dashboard.driver;
+  const { first_name } = userData.dataUser;
   return (
     <View style={styles.container}>
       {/* //TODO: delete the name Esteban and replace it with the actual user */}

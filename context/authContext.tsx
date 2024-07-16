@@ -48,7 +48,10 @@ interface UserData {
 
 interface AuthContextType {
   userData: UserData | null;
-  setUserData: (userData: UserData | null) => void;
+  // setUserData: (userData: UserData | null) => void;
+  setUserData: (
+    userData: UserData | ((prevState: UserData | null) => UserData | null)
+  ) => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);

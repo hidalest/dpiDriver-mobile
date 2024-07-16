@@ -16,6 +16,7 @@ import {
  */
 interface CalendarProps {
   onDateChange: (date: Date) => void;
+  isLoading: boolean;
 }
 
 /**
@@ -27,7 +28,7 @@ interface CalendarProps {
  *   <Calendar onDateChange={(date) => console.log(date)} />
  * )
  */
-const Calendar = ({ onDateChange }: CalendarProps) => {
+const Calendar = ({ onDateChange, isLoading }: CalendarProps) => {
   const [currentDate, setCurrentDate] = useState<Date>(new Date());
 
   const getStartOfWeek = (date: Date): Date =>
@@ -72,7 +73,7 @@ const Calendar = ({ onDateChange }: CalendarProps) => {
     <View style={styles.container}>
       <Text style={styles.month}>{currentMonth}</Text>
       <View style={styles.week}>
-        <Button title='<' onPress={handleMoveBack} />
+        <Button title='<' onPress={handleMoveBack} disabled={isLoading} />
         {daysOfWeek.map((day) => (
           <View key={day.toString()} style={styles.day}>
             <Text>{format(day, 'EEE')}</Text>
@@ -82,7 +83,7 @@ const Calendar = ({ onDateChange }: CalendarProps) => {
         <Button
           title='>'
           onPress={handleMoveForward}
-          disabled={isCurrentWeek}
+          disabled={isCurrentWeek || isLoading}
         />
       </View>
     </View>
