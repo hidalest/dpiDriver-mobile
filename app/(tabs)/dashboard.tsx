@@ -13,6 +13,7 @@ import { Colors } from '@/constants/Colors';
 import NewsCarousel from '@/components/Dashboard/NewsCarousel/NewsCarousel';
 import { FadeInView } from '@/utils/animations';
 import data from '../../data.json';
+import { useAuth } from '@/context/authContext';
 
 export default function Dashboard() {
   const {
@@ -23,7 +24,13 @@ export default function Dashboard() {
   } = data.dashboardProps;
 
   const { newsHeading, newsBackgroundColor, news } = newsNotificationsProps;
-  const { feedbackHeading, quadrantTitle } = feedbackProps;
+  const {
+    feedbackHeading,
+    quadrantTitle,
+    noFeedBackAvailableMessage,
+    feedbackMessageTitle,
+  } = feedbackProps;
+  const { userData } = useAuth();
   const colorScheme = useColorScheme(); // Get the current color scheme
 
   // Define the background color based on the color scheme
@@ -34,7 +41,7 @@ export default function Dashboard() {
     ? Colors[colorScheme].tint
     : Colors.light.tint;
 
-  console.log(colorScheme);
+  console.log('🚀 ~ Dashboard ~ userData:', userData);
 
   return (
     <FadeInView style={(styles.container, { backgroundColor: 'transparent' })}>
@@ -50,13 +57,34 @@ export default function Dashboard() {
             />
           </ShadowCard>
           {/* Feedback */}
-          <ShadowCard style={styles.newsContainer}>
-            <Text style={styles.newsHeading}>{feedbackHeading}</Text>
+          <ShadowCard style={styles.feedbackContainer}>
+            <Text style={styles.feedbackHeading}>{feedbackHeading}</Text>
             <View style={styles.feedbackProperty}>
-              <Text style={styles.feedbackPropertyHeading}>
-                {quadrantTitle}
-              </Text>
-              <Text style={styles.feedbackPropertyValue}>Team Player</Text>
+              {userData?.dashboard && (
+                <>
+                  <View style={styles.feedbackHeadingContainer}>
+                    <Text style={styles.feedbackPropertyHeading}>
+                      {quadrantTitle}
+                    </Text>
+                    <Text style={styles.feedbackPropertyValue}>
+                      {userData?.dashboard.quadrant_name}
+                    </Text>
+                  </View>
+                  <View style={styles.feedbackMessageContainer}>
+                    <Text style={styles.feedbackPropertyHeading}>
+                      {feedbackMessageTitle}
+                    </Text>
+                    <Text style={styles.feedbackPropertyValue}>
+                      {userData?.dashboard.text_message}
+                    </Text>
+                  </View>
+                </>
+              )}
+              {!userData?.dashboard && (
+                <Text style={styles.noFeedbackAvailable}>
+                  {noFeedBackAvailableMessage}
+                </Text>
+              )}
             </View>
           </ShadowCard>
           <ShadowCard style={styles.newsContainer}>
@@ -95,17 +123,40 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
   },
+  feedbackContainer: {
+    marginVertical: 15,
+    paddingVertical: 15,
+  },
+  feedbackHeading: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    margin: 'auto',
+    marginBottom: 10,
+  },
   feedbackProperty: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  feedbackHeadingContainer: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: 'red',
   },
   feedbackPropertyHeading: {
     fontWeight: 'bold',
-    fontSize: 16,
+    fontSize: 18,
+    marginVertical: 3,
   },
   feedbackPropertyValue: {
-    fontSize: 16,
+    fontSize: 18,
+    fontStyle: 'italic',
+  },
+  feedbackMessageContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  noFeedbackAvailable: {
+    fontSize: 30,
+    textAlign: 'center',
   },
 });

@@ -32,6 +32,8 @@ interface UserData {
       training_delivered: boolean;
       autocreated: boolean;
     };
+    quadrant_name: string;
+    text_message: string;
     dcr: number;
     rescue: number | null;
     dsb: number | null;
