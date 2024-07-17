@@ -45,7 +45,8 @@ const LoginScreen = () => {
         currentYear,
         // TODO: replace this with userTransportId and todayWeekNumber when we have actual data,
         'A1AXYAQM887EIE', // userTransportId
-        21
+        // 21
+        todayWeekNumber
       );
       const [foundUserData] = dashboardData.results;
       setUserData({

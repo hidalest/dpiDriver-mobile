@@ -36,5 +36,13 @@ export const styles = StyleSheet.create({
   },
   cardContainer: {
     borderColor: 'transparent',
+    marginHorizontal: 'auto',
+    textAlign: 'center',
   },
+  spinnerContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  loadingSpinner: {},
 });

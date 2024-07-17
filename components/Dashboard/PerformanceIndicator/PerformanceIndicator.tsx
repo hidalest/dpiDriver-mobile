@@ -1,5 +1,11 @@
 import Calendar from '@/components/UI/Calendar/Calendar';
-import { Card, Select, SelectItem, IndexPath } from '@ui-kitten/components';
+import {
+  Card,
+  Select,
+  SelectItem,
+  IndexPath,
+  Spinner,
+} from '@ui-kitten/components';
 import React, { useState } from 'react';
 import { Text, View } from 'react-native';
 import { PerformanceScoreProps } from './Interface';
@@ -50,20 +56,6 @@ function PerformanceIndicator(props: PerformanceScoreProps) {
     );
   };
 
-  // In case we don't have any data to show from that week
-  if (!userData) {
-    return (
-      <View style={[styles.container]}>
-        <View style={[styles.container, style]}>
-          <Card style={styles.cardContainer}>
-            {renderCardContent()}
-            <Text>Sorry, we don't have data from this week</Text>
-          </Card>
-        </View>
-      </View>
-    );
-  }
-
   const handleDateChange = async (date: Date) => {
     setCurrentDate(date);
     const todayDate = new Date();
@@ -75,6 +67,7 @@ function PerformanceIndicator(props: PerformanceScoreProps) {
       const dashboardData = await getDashboardData(
         userData?.authToken || '',
         currentYear,
+        //TODO
         'A1AXYAQM887EIE', // userTransportId, replace with actual userTransportId
         selectedWeek // selectedWeek, replace with actual selectedWeek
       );
@@ -92,32 +85,12 @@ function PerformanceIndicator(props: PerformanceScoreProps) {
         }
       });
     } catch (error) {
-      console.log('🚀 ~ handleDateChange ~ userData:', userData);
       console.error('Failed to fetch dashboard data:', error);
     } finally {
       setIsLoading(false);
     }
   };
 
-  // const handleDateChange = async (date: Date) => {
-  //   setCurrentDate(date);
-  //   const todayDate = new Date();
-  //   const currentYear = todayDate.getFullYear();
-  //   const selectedWeek = getWeekNumber(date);
-
-  //   const dashboardData = await getDashboardData(
-  //     userData.authToken,
-  //     currentYear,
-  //     // TODO: replace this with userTransportId and selectedWeek when we have actual data,
-  //     'A1AXYAQM887EIE', // userTransportId
-  //     21 // selectedWeek
-  //   );
-  //   const [foundUserData] = dashboardData.results;
-  //   setUserData((prevState) => {
-  //     ...prevState
-  //     dashboard: foundUserData,
-  //   });
-  // };
   // Important: Any metrics that wants to be added here has to be also add in the data.json file for the conditions
   const metrics = {
     dcr: userData?.dashboard?.dcr,
@@ -148,14 +121,32 @@ function PerformanceIndicator(props: PerformanceScoreProps) {
     <View style={[styles.container, style]}>
       <Card style={styles.cardContainer}>
         {renderCardContent()}
-        <RadialProgress
-          percentage={progressScore}
-          style={styles.radial}
-          color={result?.color}
-          value={Math.floor(userScore)}
-        />
-        <Text style={styles.subHeading}>{result?.title}</Text>
-        <Text style={styles.message}>{result?.message}</Text>
+        {isLoading && (
+          <View style={styles.spinnerContainer}>
+            <Spinner status='primary' style={styles.loadingSpinner} />
+          </View>
+        )}
+        {!userData?.dashboard && !isLoading && (
+          <View style={[styles.container]}>
+            <View style={[styles.container, style]}>
+              <Card style={styles.cardContainer}>
+                <Text>Sorry, we don't have data from this week</Text>
+              </Card>
+            </View>
+          </View>
+        )}
+        {userData?.dashboard && !isLoading && (
+          <>
+            <RadialProgress
+              percentage={progressScore}
+              style={styles.radial}
+              color={result?.color}
+              value={Math.floor(userScore)}
+            />
+            <Text style={styles.subHeading}>{result?.title}</Text>
+            <Text style={styles.message}>{result?.message}</Text>
+          </>
+        )}
       </Card>
     </View>
   );
