@@ -45,10 +45,15 @@ const LoginScreen = () => {
         currentYear,
         // TODO: replace this with userTransportId and todayWeekNumber when we have actual data,
         'A1AXYAQM887EIE', // userTransportId
-        21 //todayWeekNumber
+        // 21
+        todayWeekNumber
       );
       const [foundUserData] = dashboardData.results;
-      setUserData(foundUserData);
+      setUserData({
+        dashboard: foundUserData,
+        authToken: authToken.access,
+        dataUser,
+      });
 
       if (dataUser.code === token_not_valid) {
         throw new Error('Invalid username and password');

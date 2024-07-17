@@ -21,11 +21,12 @@ function Settings() {
   if (!userData) {
     return <p>Loading...</p>;
   }
-  const driver = userData.driver;
-  const driverDataJoined = driver.date_joined;
+  const driver = userData.dataUser;
+  const driverDataJoined = new Date(driver.date_joined).toLocaleDateString();
   return (
     <View>
       <View style={styles.userInfo}>
+        <Text style={styles.heading}>Your Information</Text>
         <View style={styles.userInfoContainer}>
           <Text style={styles.userInfoHeader}>Name: </Text>
           <Text style={styles.userInfoData}>
@@ -33,12 +34,26 @@ function Settings() {
           </Text>
         </View>
         <View style={styles.userInfoContainer}>
+          <Text style={styles.userInfoHeader}>Email: </Text>
+          <Text style={styles.userInfoData}>{driver?.email}</Text>
+        </View>
+        <View style={styles.userInfoContainer}>
+          <Text style={styles.userInfoHeader}>Mobile Number: </Text>
+          <Text style={styles.userInfoData}>{driver?.mobile_number}</Text>
+        </View>
+        <View style={styles.userInfoContainer}>
           <Text style={styles.userInfoHeader}>Your Transporter ID: </Text>
           <Text style={styles.userInfoData}>{driver?.transporter_id}</Text>
         </View>
         <View style={styles.userInfoContainer}>
           <Text style={styles.userInfoHeader}>Date Joined: </Text>
-          <Text style={styles.userInfoData}>{driver?.date_joined}</Text>
+          <Text style={styles.userInfoData}>{driverDataJoined}</Text>
+        </View>
+        <View style={styles.userInfoContainer}>
+          <Text style={styles.userInfoHeader}>Driver License Expiry: </Text>
+          <Text style={styles.userInfoData}>
+            {driver.driver_license_expiry}
+          </Text>
         </View>
       </View>
       <Button style={styles.logoutBtn} onPress={handleLogout}>
@@ -52,6 +67,12 @@ const styles = StyleSheet.create({
   userInfo: {
     padding: 40,
     backgroundColor: 'white',
+  },
+  heading: {
+    fontSize: 26,
+    textAlign: 'center',
+    fontWeight: 'bold',
+    marginBottom: 10,
   },
   userInfoContainer: {
     display: 'flex',

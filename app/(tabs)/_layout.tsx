@@ -24,8 +24,10 @@ export default function TabLayout() {
   }, []);
 
   useEffect(() => {
-    if(userData) {
-      const { userName, link, text} = parseMessage(userData?.text_message)
+    if (userData?.dashboard) {
+      const { userName, link, text } = parseMessage(
+        userData?.dashboard.text_message
+      );
 
       Toast.show({
         text1: `Dear ${userName}`,
@@ -33,15 +35,14 @@ export default function TabLayout() {
         type: 'info',
         autoHide: false,
         onPress: () => {
-          Toast.hide()
+          Toast.hide();
           Linking.openURL(link).catch((err) => {
             console.log(`Failed to open URL: ${err}`);
-          })
+          });
         },
       });
     }
-    
-  }, [])
+  }, []);
 
   return (
     <Tabs
@@ -117,5 +118,5 @@ const styles = StyleSheet.create({
   },
   badgeText: {
     fontSize: 12,
-  }
+  },
 });

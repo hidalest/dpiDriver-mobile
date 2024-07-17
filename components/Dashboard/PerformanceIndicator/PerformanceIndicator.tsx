@@ -1,5 +1,11 @@
 import Calendar from '@/components/UI/Calendar/Calendar';
-import { Card, Select, SelectItem, IndexPath } from '@ui-kitten/components';
+import {
+  Card,
+  Select,
+  SelectItem,
+  IndexPath,
+  Spinner,
+} from '@ui-kitten/components';
 import React, { useState } from 'react';
 import { Text, View } from 'react-native';
 import { PerformanceScoreProps } from './Interface';
@@ -7,6 +13,8 @@ import RadialProgress from '@/components/UI/RadialProgress/RadialProgress';
 import { styles } from './Styles';
 import { evaluateMetric } from '@/utils/metricUtil';
 import { useAuth } from '@/context/authContext';
+import { getWeekNumber } from '@/utils/getWeekNumber';
+import { getDashboardData } from '@/utils/apiService';
 
 function PerformanceIndicator(props: PerformanceScoreProps) {
   const { mainTitle, style, progressScore, performanceGrading } = props;
@@ -14,37 +22,87 @@ function PerformanceIndicator(props: PerformanceScoreProps) {
     new IndexPath(0)
   );
   const [currentDate, setCurrentDate] = useState<Date>(new Date());
-  const { userData } = useAuth();
+  const [isLoading, setIsLoading] = useState(false);
+  const { userData, setUserData } = useAuth();
 
-  if (!userData) {
-    return (
-      <View style={[styles.container]}>
-        <Text>Loading...</Text>
-      </View>
-    );
-  }
-
-  const { first_name } = userData.driver;
-  console.log(
-    '🚀 ~ PerformanceIndicator ~ userData.created:',
-    userData.created
-  );
-  // Important: Any metrics that wants to be added has to be also add in the data.json file for the conditions
-  const metrics = {
-    dcr: userData.dcr,
-    rescue: userData.rescue,
-    dsb: userData.dsb,
-    mc: userData.morning_checklist,
-    dar: userData.dar,
-    pod: userData.pod,
-    cc: userData.cc,
-    sc: userData.sc,
-    oa: userData.ontime_attendance,
-  };
   //@ts-ignore - For some reason Typescript is not detecting the row property and it is clearly mentioned on the UI Kitten component
   //https://akveo.github.io/react-native-ui-kitten/docs/components/select/overview#select
   const currentCategory = performanceGrading[selectedIndex.row];
+
   let result;
+
+  const renderSelectItems = () => {
+    return performanceGrading.map((category, index) => (
+      <SelectItem key={`category-option-${index}`} title={category.name} />
+    ));
+  };
+
+  const renderCardContent = () => {
+    return (
+      <>
+        <Text style={styles.heading}>{mainTitle}</Text>
+        <Select
+          selectedIndex={selectedIndex}
+          onSelect={(index) => setSelectedIndex(index)}
+          //@ts-ignore - For some reason Typescript is not detecting the row property and it is clearly mentioned on the UI Kitten component
+          //https://akveo.github.io/react-native-ui-kitten/docs/components/select/overview#select
+          value={performanceGrading[selectedIndex.row]?.name}
+          style={styles.performanceCategory}
+        >
+          {renderSelectItems()}
+        </Select>
+        <Calendar onDateChange={handleDateChange} isLoading={isLoading} />
+      </>
+    );
+  };
+
+  const handleDateChange = async (date: Date) => {
+    setCurrentDate(date);
+    const todayDate = new Date();
+    const currentYear = todayDate.getFullYear();
+    const selectedWeek = getWeekNumber(date);
+
+    try {
+      setIsLoading(true);
+      const dashboardData = await getDashboardData(
+        userData?.authToken || '',
+        currentYear,
+        //TODO
+        'A1AXYAQM887EIE', // userTransportId, replace with actual userTransportId
+        selectedWeek // selectedWeek, replace with actual selectedWeek
+      );
+
+      const [foundUserData] = dashboardData.results;
+
+      setUserData((prevState) => {
+        if (prevState) {
+          return {
+            ...prevState,
+            dashboard: foundUserData,
+          };
+        } else {
+          return null;
+        }
+      });
+    } catch (error) {
+      console.error('Failed to fetch dashboard data:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // Important: Any metrics that wants to be added here has to be also add in the data.json file for the conditions
+  const metrics = {
+    dcr: userData?.dashboard?.dcr,
+    rescue: userData?.dashboard?.rescue,
+    dsb: userData?.dashboard?.dsb,
+    mc: userData?.dashboard?.morning_checklist,
+    dar: userData?.dashboard?.dar,
+    pod: userData?.dashboard?.pod,
+    cc: userData?.dashboard?.cc,
+    sc: userData?.dashboard?.sc,
+    oa: userData?.dashboard?.ontime_attendance,
+  };
 
   //@ts-ignore
   // Type Error on userScore and we dont know why
@@ -59,39 +117,36 @@ function PerformanceIndicator(props: PerformanceScoreProps) {
     result = evaluateMetric(dcrMetric, userScore);
   }
 
-  const handleDateChange = (date: Date) => {
-    setCurrentDate(date);
-    // Handle any additional logic based on the new date
-  };
-
   return (
     <View style={[styles.container, style]}>
       <Card style={styles.cardContainer}>
-        <Text style={styles.heading}>{mainTitle}</Text>
-        <Select
-          selectedIndex={selectedIndex}
-          onSelect={(index) => setSelectedIndex(index)}
-          value={currentCategory.name}
-          style={styles.performanceCategory}
-        >
-          {performanceGrading.map((category, index) => {
-            return (
-              <SelectItem
-                key={`category-option-${index}`}
-                title={category.name}
-              />
-            );
-          })}
-        </Select>
-        <Calendar onDateChange={handleDateChange} />
-        <RadialProgress
-          percentage={progressScore}
-          style={styles.radial}
-          color={result?.color}
-          value={Math.floor(userScore)}
-        />
-        <Text style={styles.subHeading}>{result?.title}</Text>
-        <Text style={styles.message}>{result?.message}</Text>
+        {renderCardContent()}
+        {isLoading && (
+          <View style={styles.spinnerContainer}>
+            <Spinner status='primary' style={styles.loadingSpinner} />
+          </View>
+        )}
+        {!userData?.dashboard && !isLoading && (
+          <View style={[styles.container]}>
+            <View style={[styles.container, style]}>
+              <Card style={styles.cardContainer}>
+                <Text>Sorry, we don't have data from this week</Text>
+              </Card>
+            </View>
+          </View>
+        )}
+        {userData?.dashboard && !isLoading && (
+          <>
+            <RadialProgress
+              percentage={progressScore}
+              style={styles.radial}
+              color={result?.color}
+              value={Math.floor(userScore)}
+            />
+            <Text style={styles.subHeading}>{result?.title}</Text>
+            <Text style={styles.message}>{result?.message}</Text>
+          </>
+        )}
       </Card>
     </View>
   );
