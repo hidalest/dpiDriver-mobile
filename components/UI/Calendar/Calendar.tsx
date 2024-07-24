@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
 import {
   format,
@@ -9,6 +9,9 @@ import {
   eachDayOfInterval,
   isAfter,
   isSameWeek,
+  getWeek,
+  startOfYear,
+  addWeeks as addWeeksDateFns,
 } from 'date-fns';
 
 /**
@@ -17,6 +20,7 @@ import {
 interface CalendarProps {
   onDateChange: (date: Date) => void;
   isLoading: boolean;
+  weekNumber: number;
 }
 
 /**
@@ -25,11 +29,22 @@ interface CalendarProps {
  * @component
  * @example
  * return (
- *   <Calendar onDateChange={(date) => console.log(date)} />
+ *   <Calendar onDateChange={(date) => console.log(date)} weekNumber={21} isLoading={false} />
  * )
  */
-const Calendar = ({ onDateChange, isLoading }: CalendarProps) => {
-  const [currentDate, setCurrentDate] = useState<Date>(new Date());
+const Calendar = ({ onDateChange, isLoading, weekNumber }: CalendarProps) => {
+  const getStartOfWeekByNumber = (weekNumber: number): Date => {
+    const startOfThisYear = startOfYear(new Date());
+    return addWeeksDateFns(startOfThisYear, weekNumber - 1);
+  };
+
+  const [currentDate, setCurrentDate] = useState<Date>(
+    getStartOfWeekByNumber(weekNumber)
+  );
+
+  useEffect(() => {
+    setCurrentDate(getStartOfWeekByNumber(weekNumber));
+  }, [weekNumber]);
 
   const getStartOfWeek = (date: Date): Date =>
     startOfWeek(date, { weekStartsOn: 0 });

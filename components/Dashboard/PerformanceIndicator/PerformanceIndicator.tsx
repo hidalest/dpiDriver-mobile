@@ -15,6 +15,7 @@ import { evaluateMetric } from '@/utils/metricUtil';
 import { useAuth } from '@/context/authContext';
 import { getWeekNumber } from '@/utils/getWeekNumber';
 import { getDashboardData } from '@/utils/apiService';
+import { startingWeekNumber } from '@/constants/Dates';
 
 function PerformanceIndicator(props: PerformanceScoreProps) {
   const { mainTitle, style, progressScore, performanceGrading } = props;
@@ -51,7 +52,11 @@ function PerformanceIndicator(props: PerformanceScoreProps) {
         >
           {renderSelectItems()}
         </Select>
-        <Calendar onDateChange={handleDateChange} isLoading={isLoading} />
+        <Calendar
+          onDateChange={handleDateChange}
+          isLoading={isLoading}
+          weekNumber={startingWeekNumber}
+        />
       </>
     );
   };
@@ -109,12 +114,14 @@ function PerformanceIndicator(props: PerformanceScoreProps) {
   // "¯\\_(ツ)_/¯",
   const userScore = metrics[currentCategory.abbreviation.toLowerCase()];
 
-  const dcrMetric = performanceGrading.find(
-    (metric) => metric.abbreviation === currentCategory.abbreviation
-  );
+  if (userData?.dashboard) {
+    const dcrMetric = performanceGrading.find(
+      (metric) => metric.abbreviation === currentCategory.abbreviation
+    );
 
-  if (dcrMetric) {
-    result = evaluateMetric(dcrMetric, userScore);
+    if (dcrMetric) {
+      result = evaluateMetric(dcrMetric, userScore);
+    }
   }
 
   return (
