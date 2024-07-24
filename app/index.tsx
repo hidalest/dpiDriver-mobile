@@ -15,6 +15,7 @@ import {
   getDashboardData,
 } from '@/utils/apiService';
 import { API_CODE } from '@/config/apiConfig';
+import { startingWeekNumber } from '@/constants/Dates';
 
 const LoginScreen = () => {
   const {} = data.loginProps;
@@ -46,7 +47,7 @@ const LoginScreen = () => {
         // TODO: replace this with userTransportId and todayWeekNumber when we have actual data,
         'A1AXYAQM887EIE', // userTransportId
         // 21
-        todayWeekNumber
+        startingWeekNumber
       );
       const [foundUserData] = dashboardData.results;
       setUserData({
