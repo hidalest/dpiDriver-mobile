@@ -5,7 +5,9 @@ import {
   useColorScheme,
   ScrollView,
   Text,
+  Linking,
 } from 'react-native';
+import { Button } from '@ui-kitten/components';
 import DashboardHeading from '@/components/Dashboard/DashboardHeading/DashboardHeading';
 import PerformanceIndicator from '@/components/Dashboard/PerformanceIndicator/PerformanceIndicator';
 import ShadowCard from '@/components/UI/ShadowCard/ShadowCard';
@@ -14,6 +16,7 @@ import NewsCarousel from '@/components/Dashboard/NewsCarousel/NewsCarousel';
 import { FadeInView } from '@/utils/animations';
 import data from '../../data.json';
 import { useAuth } from '@/context/authContext';
+import { parseMessage } from '@/utils/utils';
 
 export default function Dashboard() {
   const {
@@ -26,9 +29,8 @@ export default function Dashboard() {
   const { newsHeading, newsBackgroundColor, news } = newsNotificationsProps;
   const {
     feedbackHeading,
-    quadrantTitle,
     noFeedBackAvailableMessage,
-    feedbackMessageTitle,
+    feedbackWatchVideoText
   } = feedbackProps;
   const { userData } = useAuth();
   const colorScheme = useColorScheme(); // Get the current color scheme
@@ -42,6 +44,8 @@ export default function Dashboard() {
     : Colors.light.tint;
 
   console.log('🚀 ~ Dashboard ~ userData:', userData);
+
+  const { text, link } = parseMessage(userData?.dashboard.text_message || "");
 
   return (
     <FadeInView style={(styles.container, { backgroundColor: 'transparent' })}>
@@ -63,20 +67,27 @@ export default function Dashboard() {
               {userData?.dashboard && (
                 <>
                   <View style={styles.feedbackHeadingContainer}>
+                    <Text style={{ color: 'gray' }}>Your current title is</Text>
                     <Text style={styles.feedbackPropertyHeading}>
-                      {quadrantTitle}
-                    </Text>
-                    <Text style={styles.feedbackPropertyValue}>
                       {userData?.dashboard.quadrant_name}
                     </Text>
                   </View>
                   <View style={styles.feedbackMessageContainer}>
-                    <Text style={styles.feedbackPropertyHeading}>
-                      {feedbackMessageTitle}
-                    </Text>
-                    <Text style={styles.feedbackPropertyValue}>
-                      {userData?.dashboard.text_message}
-                    </Text>
+                    <Text style={styles.feedbackPropertyValue}>{text}</Text>
+                    {link && (
+                      <Button 
+                        size='large'
+                        appearance='outline'
+                        status='info'
+                        style={{ marginVertical: 10 }}
+                        onPress={() => {
+                          Linking.openURL(link).catch((err) => {
+                            console.log(`Failed to open URL: ${err}`);
+                          });
+                        }}>
+                        <Text>{feedbackWatchVideoText}</Text>
+                      </Button>
+                    )}
                   </View>
                 </>
               )}
@@ -105,13 +116,11 @@ export default function Dashboard() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // padding: 20,
   },
   heading: {
     fontSize: 24,
     fontWeight: 'bold',
   },
-
   performance: {
     backgroundColor: 'white',
   },
@@ -131,7 +140,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     margin: 'auto',
-    marginBottom: 10,
+    marginBottom: 25,
   },
   feedbackProperty: {
     display: 'flex',
@@ -139,17 +148,18 @@ const styles = StyleSheet.create({
   },
   feedbackHeadingContainer: {
     display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'flex-start',
   },
   feedbackPropertyHeading: {
     fontWeight: 'bold',
-    fontSize: 18,
-    marginVertical: 3,
+    fontSize: 26,
+    marginTop: -1
   },
   feedbackPropertyValue: {
     fontSize: 18,
+    color: 'gray',
     fontStyle: 'italic',
+    marginVertical: 20
   },
   feedbackMessageContainer: {
     display: 'flex',
@@ -158,5 +168,5 @@ const styles = StyleSheet.create({
   noFeedbackAvailable: {
     fontSize: 30,
     textAlign: 'center',
-  },
+  }
 });
