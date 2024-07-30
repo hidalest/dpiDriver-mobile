@@ -22,6 +22,12 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 13,
   },
+  errorMessage: {
+    marginBottom: 20,
+    textAlign: 'center',
+    fontSize: 13,
+    color: 'red',
+  },
   input: {
     marginBottom: 10,
   },

@@ -10,6 +10,7 @@ import { ModalWithBackdropShowcase } from '../UI/ModalWithBackdropShowcase';
 
 const Login = (props: LoginProps) => {
   const {
+    isError,
     isLoading,
     onSignIn,
     loginHeader,
@@ -20,6 +21,7 @@ const Login = (props: LoginProps) => {
     loginUsernamePlaceholder,
     forgotButton,
     forgotPasswordModalInstructions,
+    errorLoginMessage,
   } = props;
 
   /* TODO: Remove the values on the username and password for empty values once development is done */
@@ -75,6 +77,11 @@ const Login = (props: LoginProps) => {
             />
           )}
         />
+        {isError && (
+          <Text category='p1' style={styles.errorMessage}>
+            {errorLoginMessage}
+          </Text>
+        )}
       </FadeInView>
       <ScaleInView style={styles.button}>
         <ModalWithBackdropShowcase
