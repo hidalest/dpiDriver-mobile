@@ -1,5 +1,3 @@
-// src/screens/LoginScreen.tsx
-
 import { CommonActions } from '@react-navigation/native';
 import { Link, useNavigation } from 'expo-router';
 import React, { useState } from 'react';
@@ -20,6 +18,7 @@ import { startingWeekNumber } from '@/constants/Dates';
 const LoginScreen = () => {
   const {} = data.loginProps;
   const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
   const { token_not_valid } = API_CODE;
   const { setUserData } = useAuth();
   const { expoPushToken, notification } = usePushNotifications();
@@ -46,7 +45,6 @@ const LoginScreen = () => {
         currentYear,
         // TODO: replace this with userTransportId and todayWeekNumber when we have actual data,
         'A1AXYAQM887EIE', // userTransportId
-        // 21
         startingWeekNumber
       );
       const [foundUserData] = dashboardData.results;
@@ -57,6 +55,7 @@ const LoginScreen = () => {
       });
 
       if (dataUser.code === token_not_valid) {
+        console.log('Error here');
         throw new Error('Invalid username and password');
       }
 
@@ -67,7 +66,9 @@ const LoginScreen = () => {
           routes: [{ name: '(tabs)' }],
         })
       );
+      setIsError(false);
     } catch (error) {
+      setIsError(true);
       console.error('Network request failed:', error);
     } finally {
       setIsLoading(false);
@@ -76,11 +77,11 @@ const LoginScreen = () => {
 
   return (
     <View style={styles.container}>
-      {/* Add login form components here */}
       <Login
         onSignIn={handleSignIn}
         {...data.loginProps}
         isLoading={isLoading}
+        isError={isError}
       />
     </View>
   );

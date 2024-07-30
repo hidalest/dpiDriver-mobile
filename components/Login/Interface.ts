@@ -1,5 +1,6 @@
 export interface LoginProps {
   isLoading: boolean;
+  isError: boolean;
   onSignIn: (username: string, password: string) => void;
   loginLogoAltText: string;
   loginHeader: string;
@@ -9,4 +10,5 @@ export interface LoginProps {
   loginButtonText: string;
   forgotButton: string;
   forgotPasswordModalInstructions: string;
+  errorLoginMessage: string;
 }

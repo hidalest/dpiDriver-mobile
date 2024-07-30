@@ -9,6 +9,7 @@
         "loginPasswordPlaceholder": "Password",
         "loginButtonText": "Sign-In",
         "forgotButton": "Forgot Password?",
+        "errorLoginMessage": "Invalid Email and/or Password",
         "forgotPasswordModalInstructions": "Please contact your admin \nadministration@mycourier.com"
     },
     "trainingsPageProps": {
