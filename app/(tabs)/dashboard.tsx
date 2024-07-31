@@ -30,7 +30,7 @@ export default function Dashboard() {
   const {
     feedbackHeading,
     noFeedBackAvailableMessage,
-    feedbackWatchVideoText
+    feedbackWatchVideoText,
   } = feedbackProps;
   const { userData } = useAuth();
   const colorScheme = useColorScheme(); // Get the current color scheme
@@ -43,9 +43,7 @@ export default function Dashboard() {
     ? Colors[colorScheme].tint
     : Colors.light.tint;
 
-  console.log('🚀 ~ Dashboard ~ userData:', userData);
-
-  const { text, link } = parseMessage(userData?.dashboard.text_message || "");
+  // const { text, link } = parseMessage(userData?.dashboard.text_message || '');
 
   return (
     <FadeInView style={(styles.container, { backgroundColor: 'transparent' })}>
@@ -73,9 +71,11 @@ export default function Dashboard() {
                     </Text>
                   </View>
                   <View style={styles.feedbackMessageContainer}>
-                    <Text style={styles.feedbackPropertyValue}>{text}</Text>
-                    {link && (
-                      <Button 
+                    <Text style={styles.feedbackPropertyValue}>
+                      {userData.dashboard.text_message}
+                    </Text>
+                    {/* {link && (
+                      <Button
                         size='large'
                         appearance='outline'
                         status='info'
@@ -84,10 +84,13 @@ export default function Dashboard() {
                           Linking.openURL(link).catch((err) => {
                             console.log(`Failed to open URL: ${err}`);
                           });
-                        }}>
-                        <Text>{feedbackWatchVideoText}</Text>
+                        }}
+                      >
+                        <Text>
+                          {feedbackWatchVideoText || 'No video available'}
+                        </Text>
                       </Button>
-                    )}
+                    )} */}
                   </View>
                 </>
               )}
@@ -153,13 +156,13 @@ const styles = StyleSheet.create({
   feedbackPropertyHeading: {
     fontWeight: 'bold',
     fontSize: 26,
-    marginTop: -1
+    marginTop: -1,
   },
   feedbackPropertyValue: {
     fontSize: 18,
     color: 'gray',
     fontStyle: 'italic',
-    marginVertical: 20
+    marginVertical: 20,
   },
   feedbackMessageContainer: {
     display: 'flex',
@@ -168,5 +171,5 @@ const styles = StyleSheet.create({
   noFeedbackAvailable: {
     fontSize: 30,
     textAlign: 'center',
-  }
+  },
 });
