@@ -35,6 +35,13 @@ export const styles = StyleSheet.create({
     marginTop: 10,
     width: '100%',
   },
+  loginButtonText: {
+    color: 'white',
+    fontWeight: 'bold',
+  },
+  loginSpinnerContainer: {
+    backgroundColor: 'blue',
+  },
   controlContainer: {
     borderRadius: 4,
     padding: 12,
