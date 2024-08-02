@@ -9,7 +9,6 @@ import { AuthProvider } from '@/context/authContext';
 import Toast, { BaseToast } from 'react-native-toast-message';
 
 export default function RootLayout() {
- 
   return (
     <>
       <AuthProvider>
@@ -17,15 +16,21 @@ export default function RootLayout() {
           <SafeAreaProvider>
             <Stack>
               <Stack.Screen
+                name='index'
+                options={{
+                  headerTitle: '',
+                }}
+              />
+              <Stack.Screen
                 name='(tabs)'
                 options={{
-                  headerTitle: 'My Courier',
+                  headerTitle: 'My Courier', // Adjust this as needed
                   headerBackButtonMenuEnabled: false,
                   headerBackVisible: false,
                 }}
               />
               <Stack.Screen
-                name="[trainingId]/index"
+                name='[trainingId]/index'
                 options={{
                   headerTitle: 'Training Details',
                   headerBackVisible: true,
@@ -36,7 +41,7 @@ export default function RootLayout() {
           </SafeAreaProvider>
         </ApplicationProvider>
       </AuthProvider>
-      <Toast config={toastConfig}/>
+      <Toast config={toastConfig} />
     </>
   );
 }
@@ -50,11 +55,11 @@ const toastConfig = {
       text2NumberOfLines={5}
       text1Style={{
         fontSize: 16,
-        fontWeight: '600'
+        fontWeight: '600',
       }}
       text2Style={{
         fontSize: 12,
       }}
     />
-  )
+  ),
 };

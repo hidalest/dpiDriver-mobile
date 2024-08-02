@@ -31,6 +31,7 @@ export default function Dashboard() {
     feedbackHeading,
     noFeedBackAvailableMessage,
     feedbackWatchVideoText,
+    weeklyTitle,
   } = feedbackProps;
   const { userData } = useAuth();
   const colorScheme = useColorScheme(); // Get the current color scheme
@@ -65,9 +66,9 @@ export default function Dashboard() {
               {userData?.dashboard && (
                 <>
                   <View style={styles.feedbackHeadingContainer}>
-                    <Text style={{ color: 'gray' }}>Your current title is</Text>
+                    <Text style={{ color: 'gray' }}>{weeklyTitle}</Text>
                     <Text style={styles.feedbackPropertyHeading}>
-                      {userData?.dashboard.quadrant_name}
+                      {userData?.dashboard.report.week_total_score}
                     </Text>
                   </View>
                   <View style={styles.feedbackMessageContainer}>
@@ -138,6 +139,7 @@ const styles = StyleSheet.create({
   feedbackContainer: {
     marginVertical: 15,
     paddingVertical: 15,
+    marginTop: 30,
   },
   feedbackHeading: {
     fontSize: 20,

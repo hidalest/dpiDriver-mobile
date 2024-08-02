@@ -96,7 +96,9 @@ const Login = (props: LoginProps) => {
           disabled={isLoading}
         >
           <Fragment>
-            {!isLoading && <Text>{loginButtonText}</Text>}
+            {!isLoading && (
+              <Text style={styles.loginButtonText}>{loginButtonText}</Text>
+            )}
             {isLoading && <Spinner status='control' />}
           </Fragment>
         </Button>

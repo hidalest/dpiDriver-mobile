@@ -12,6 +12,9 @@ interface UserData {
     driver_license_expiry: string;
   };
   dashboard: {
+    report: {
+      week_total_score: string;
+    };
     driver: {
       id: number;
       is_superuser: boolean;

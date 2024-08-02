@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { View, Text, StyleSheet, ViewStyle } from 'react-native';
-import Svg, { Circle } from 'react-native-svg';
+import Svg, { Circle, Defs, LinearGradient, Stop } from 'react-native-svg';
 
 /**
  * Props for the RadialProgress component.
@@ -61,6 +61,12 @@ const RadialProgress = ({
   return (
     <View style={[styles.container, { width: size, height: size }, style]}>
       <Svg height={size} width={size}>
+        <Defs>
+          <LinearGradient id='grad' x1='0%' y1='0%' x2='100%' y2='100%'>
+            <Stop offset='0%' stopColor={color} stopOpacity='1' />
+            <Stop offset='100%' stopColor={color} stopOpacity='0.6' />
+          </LinearGradient>
+        </Defs>
         <Circle
           stroke={backgroundColor}
           fill='none'
@@ -70,7 +76,7 @@ const RadialProgress = ({
           strokeWidth={strokeWidth}
         />
         <Circle
-          stroke={color}
+          stroke='url(#grad)'
           fill='none'
           cx={size / 2}
           cy={size / 2}
@@ -93,6 +99,11 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 5,
+    elevation: 8,
   },
   textContainer: {
     position: 'absolute',
@@ -100,7 +111,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   text: {
-    fontSize: 18,
+    fontSize: 30,
     fontWeight: 'bold',
   },
 });

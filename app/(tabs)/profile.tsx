@@ -26,7 +26,7 @@ function Settings() {
   return (
     <View>
       <View style={styles.userInfo}>
-        <Text style={styles.heading}>Your Information</Text>
+        <Text style={styles.heading}>Profile</Text>
         <View style={styles.userInfoContainer}>
           <Text style={styles.userInfoHeader}>Name: </Text>
           <Text style={styles.userInfoData}>
