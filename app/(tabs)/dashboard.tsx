@@ -139,6 +139,7 @@ const styles = StyleSheet.create({
   feedbackContainer: {
     marginVertical: 15,
     paddingVertical: 15,
+    marginTop: 30,
   },
   feedbackHeading: {
     fontSize: 20,
