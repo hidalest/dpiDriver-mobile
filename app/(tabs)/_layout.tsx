@@ -38,7 +38,7 @@ export default function TabLayout() {
         },
       });
     }
-  }, [userData]);
+  }, []);
 
   return (
     <Tabs
