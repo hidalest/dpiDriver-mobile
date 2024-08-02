@@ -158,7 +158,7 @@
                     "thresholds": [
                         {
                             "condition": "< 200",
-                            "title": "Great Score! 🌟",
+                            "title": "Fantastic!  🚀",
                             "message": "Fantastic work! Your delivery success behaviors are outstanding. Keep it up!",
                             "color": "#4F81BD"
                         },
@@ -188,7 +188,7 @@
                     "thresholds": [
                         {
                             "condition": ">= 98",
-                            "title": "Great Score! 📸",
+                            "title": "Fantastic!  🚀",
                             "message": "Excellent job! Your photo on delivery rate is superb. Keep it up!",
                             "color": "#4F81BD"
                         },
@@ -218,7 +218,7 @@
                     "thresholds": [
                         {
                             "condition": ">= 99.5",
-                            "title": "Great Score! 📞",
+                            "title": "Fantastic!  🚀",
                             "message": "Excellent compliance! Your contact compliance rate is outstanding. Keep it up!",
                             "color": "#4F81BD"
                         },
@@ -248,7 +248,7 @@
                     "thresholds": [
                         {
                             "condition": "== 0",
-                            "title": "Great Score! 📦",
+                            "title": "Fantastic!  🚀",
                             "message": "Perfect compliance! Your scan compliance is outstanding. Keep it up!",
                             "color": "#4F81BD"
                         },
@@ -278,7 +278,7 @@
                     "thresholds": [
                         {
                             "condition": "== 0",
-                            "title": "Great Score! 🌟",
+                            "title": "Fantastic!  🚀",
                             "message": "Perfect! Your customer escalation defect rate is outstanding. Keep it up!",
                             "color": "#4F81BD"
                         },
@@ -308,7 +308,7 @@
                     "thresholds": [
                         {
                             "condition": ">= 4",
-                            "title": "Great Score! 🌟",
+                            "title": "Fantastic! 🚀",
                             "message": "Perfect compliance! Your performance over the weeks is outstanding. Keep it up!",
                             "color": "#4F81BD"
                         },
@@ -338,7 +338,7 @@
                     "thresholds": [
                         {
                             "condition": ">= 1",
-                            "title": "Great Score! 🚑",
+                            "title": "Fantastic!  🚀 🚑",
                             "message": "Perfect compliance! Your rescue rate is outstanding. Keep it up!",
                             "color": "#4F81BD"
                         },
@@ -356,7 +356,7 @@
                     "thresholds": [
                         {
                             "condition": "== 100",
-                            "title": "Great Score! ☀️",
+                            "title": "Fantastic!  🚀",
                             "message": "Perfect compliance! Your morning checklist completion rate is outstanding. Keep it up!",
                             "color": "#4F81BD"
                         },
@@ -386,7 +386,7 @@
                     "thresholds": [
                         {
                             "condition": ">= 100",
-                            "title": "Great Score! ⏰",
+                            "title": "Fantastic!  🚀",
                             "message": "Perfect compliance! Your on-time attendance rate is outstanding. Keep it up!",
                             "color": "#4F81BD"
                         },
