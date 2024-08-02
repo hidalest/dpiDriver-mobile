@@ -6,22 +6,18 @@ import { Badge } from 'react-native-elements';
 import { useAuth } from '@/context/authContext';
 import Toast from 'react-native-toast-message';
 import { parseMessage } from '@/utils/utils';
+import { usePushNotifications } from '@/hooks/usePushNotifications';
 
 export default function TabLayout() {
-  // Replace this with your actual notification count logic
-  const [notificationCount, setNotificationCount] = useState(12);
-
+  const { notifications } = usePushNotifications();
+  const [notificationCount, setNotificationCount] = useState(
+    notifications.length
+  );
   const { userData } = useAuth();
 
-  // Fetch or update notification count logic here
   useEffect(() => {
-    // Simulate fetching notification count
-    const fetchNotificationCount = () => {
-      // Example: setNotificationCount(5);
-    };
-
-    fetchNotificationCount();
-  }, []);
+    setNotificationCount(notifications.length);
+  }, [notifications]);
 
   useEffect(() => {
     if (userData?.dashboard) {
@@ -42,7 +38,7 @@ export default function TabLayout() {
         },
       });
     }
-  }, []);
+  }, [userData]);
 
   return (
     <Tabs
