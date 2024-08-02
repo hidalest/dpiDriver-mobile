@@ -21,10 +21,8 @@ const LoginScreen = () => {
   const [isError, setIsError] = useState(false);
   const { token_not_valid } = API_CODE;
   const { setUserData } = useAuth();
-  const { expoPushToken, notification } = usePushNotifications();
+  const { expoPushToken, notifications } = usePushNotifications();
   const navigation = useNavigation();
-
-  const dataNotification = JSON.stringify(notification, undefined, 2);
 
   const handleSignIn = async (
     email: string,
@@ -43,7 +41,7 @@ const LoginScreen = () => {
       const dashboardData = await getDashboardData(
         authToken.access,
         currentYear,
-        // TODO: replace this with userTransportId and todayWeekNumber when we have actual data,
+        // TODO change the line below when we have actual data, this should be replaced with userTransportId
         'A1AXYAQM887EIE', // userTransportId
         startingWeekNumber
       );
@@ -59,7 +57,6 @@ const LoginScreen = () => {
         throw new Error('Invalid username and password');
       }
 
-      // After successful login, reset the navigation stack and navigate to the dashboard
       navigation.dispatch(
         CommonActions.reset({
           index: 0,

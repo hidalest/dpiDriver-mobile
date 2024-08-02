@@ -1,14 +1,49 @@
-import React from 'react';
-import { StyleSheet, Text, View, SafeAreaView, ScrollView } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
 import { FadeInView } from '@/utils/animations';
-
-import NotificationsList from '@/components/Notifications/NotificationsList';
-import { Button, Icon, IconElement } from '@ui-kitten/components';
-
-import data from '../../data.json';
+import { Button } from '@ui-kitten/components';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
+import data from '../../data.json';
+import { usePushNotifications } from '@/hooks/usePushNotifications';
+import NotificationList from '@/components/Notifications/NotificationsList';
+
+interface Notification {
+  id: string;
+  title: string;
+  message: string;
+  time: string;
+  icon: string;
+}
+
 function Notifications() {
   const { mainTitle, notificationsAreaColor } = data.notificationProps;
+  const { notifications: pushNotifications } = usePushNotifications();
+
+  const [notifications, setNotifications] = useState<Notification[]>([]);
+
+  useEffect(() => {
+    if (pushNotifications.length > 0) {
+      const lastNotification = pushNotifications[pushNotifications.length - 1];
+      const newNotification: Notification = {
+        id: lastNotification.request.identifier,
+        title: lastNotification.request.content.title || 'No title',
+        message: lastNotification.request.content.body || 'No message',
+        time: lastNotification.date.toString(),
+        icon: 'https://placekitten.com/40/40', // Default icon
+      };
+      setNotifications((prevNotifications) => [
+        newNotification,
+        ...prevNotifications,
+      ]);
+    }
+  }, [pushNotifications]);
+
+  const handleDelete = (id: string) => {
+    setNotifications((prevNotifications) =>
+      prevNotifications.filter((notification) => notification.id !== id)
+    );
+  };
+
   return (
     <SafeAreaView style={styles.safeArea}>
       <FadeInView style={styles.container}>
@@ -19,7 +54,10 @@ function Notifications() {
             { backgroundColor: notificationsAreaColor },
           ]}
         >
-          <NotificationsList />
+          <NotificationList
+            notifications={notifications}
+            handleDelete={handleDelete}
+          />
         </View>
         <View style={styles.buttonContainer}>
           <Button style={styles.button}>
@@ -46,10 +84,6 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-  },
-  scrollViewContent: {
-    flexGrow: 1,
-    justifyContent: 'flex-end',
   },
   bottomContainer: {
     backgroundColor: '#4F81BD',

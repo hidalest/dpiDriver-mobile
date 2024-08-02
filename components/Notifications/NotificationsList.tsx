@@ -1,6 +1,6 @@
-// Notifications.tsx
-import React, { useState } from 'react';
-import { StyleSheet, SafeAreaView, Text, View } from 'react-native';
+// NotificationList.tsx
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 import { RowMap, SwipeListView } from 'react-native-swipe-list-view';
 import NotificationCard from './NotificationCard';
 import { timeSince } from '@/utils/timeUntil';
@@ -17,42 +17,15 @@ interface Notification {
   icon: string;
 }
 
-// TODO: This is just an example, this needs to be replaced when we fetch the notifications
-const initialNotifications: Notification[] = [
-  {
-    id: '1',
-    title: 'Anna',
-    message: 'Message: You wanna come with me?',
-    time: '2024-06-15T14:30:00Z', // ISO 8601 format
-    icon: 'https://placekitten.com/40/40',
-  },
-  {
-    id: '2',
-    title: 'Twitter',
-    message:
-      'It is important that everyones finish all the training by this friday.',
-    time: '2024-06-15T14:15:00Z', // ISO 8601 format
-    icon: 'https://placekitten.com/40/40',
-  },
-  {
-    id: '3',
-    title: 'Newsletter',
-    message:
-      'Email: "We have an incredible discount on the new adidas Falcon sneakers..."',
-    time: '2024-06-15T14:10:00Z', // ISO 8601 format
-    icon: 'https://placekitten.com/40/40',
-  },
-];
+interface NotificationListProps {
+  notifications: Notification[];
+  handleDelete: (id: string) => void;
+}
 
-const Notifications = () => {
-  const [notifications, setNotifications] = useState(initialNotifications);
-
-  const handleDelete = (id: string) => {
-    setNotifications(
-      notifications.filter((notification) => notification.id !== id)
-    );
-  };
-
+const NotificationList: React.FC<NotificationListProps> = ({
+  notifications,
+  handleDelete,
+}) => {
   const handleMarkAsRead = (id: string) => {
     console.log(`Notification ${id} marked as read`);
   };
@@ -64,7 +37,7 @@ const Notifications = () => {
       message={item.message}
       time={timeSince(new Date(item.time))}
       icon={item.icon}
-      onDelete={handleDelete}
+      onDelete={() => handleDelete(item.id)}
       onMarkAsRead={handleMarkAsRead}
     />
   );
@@ -131,4 +104,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Notifications;
+export default NotificationList;

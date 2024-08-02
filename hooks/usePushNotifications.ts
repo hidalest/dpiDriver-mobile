@@ -5,13 +5,12 @@ import { useEffect, useRef, useState } from 'react';
 import { Platform } from 'react-native';
 
 export interface PushNotificationState {
-  notification?: Notifications.Notification;
+  notifications: Notifications.Notification[];
   expoPushToken?: Notifications.ExpoPushToken;
 }
 
 export const usePushNotifications = (): PushNotificationState => {
-  Notifications.setNotificationHandler;
-  ({
+  Notifications.setNotificationHandler({
     handleNotification: async () => ({
       shouldPlaySound: false,
       shouldShowAlert: true,
@@ -22,9 +21,9 @@ export const usePushNotifications = (): PushNotificationState => {
   const [expoPushToken, setExpoPushToken] = useState<
     Notifications.ExpoPushToken | undefined
   >();
-  const [notification, setNotification] = useState<
-    Notifications.Notification | undefined
-  >();
+  const [notifications, setNotifications] = useState<
+    Notifications.Notification[]
+  >([]);
 
   const notificationListener = useRef<Notifications.Subscription>();
   const responseListener = useRef<Notifications.Subscription>();
@@ -35,7 +34,6 @@ export const usePushNotifications = (): PushNotificationState => {
     if (Device.isDevice) {
       const { status: existingStatus } =
         await Notifications.getPermissionsAsync();
-
       let finalStatus = existingStatus;
 
       if (existingStatus !== 'granted') {
@@ -62,7 +60,7 @@ export const usePushNotifications = (): PushNotificationState => {
 
       return token;
     } else {
-      console.log('Please use a phisical device for notifications');
+      console.log('Please use a physical device for notifications');
     }
   }
 
@@ -72,26 +70,28 @@ export const usePushNotifications = (): PushNotificationState => {
     });
 
     notificationListener.current =
-      Notifications.addNotificationReceivedListener((notification) =>
-        setNotification(notification)
-      );
+      Notifications.addNotificationReceivedListener((notification) => {
+        setNotifications((prevNotifications) => [
+          ...prevNotifications,
+          notification,
+        ]);
+      });
 
     responseListener.current =
-      Notifications.addNotificationResponseReceivedListener((response) =>
-        console.log(response)
-      );
+      Notifications.addNotificationResponseReceivedListener((response) => {
+        console.log(response);
+      });
 
     return () => {
       Notifications.removeNotificationSubscription(
         notificationListener.current!
       );
-
       Notifications.removeNotificationSubscription(responseListener.current!);
     };
-  });
+  }, []);
 
   return {
     expoPushToken,
-    notification,
+    notifications,
   };
 };
