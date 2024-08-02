@@ -17,6 +17,7 @@ export const styles = StyleSheet.create({
   },
   message: {
     textAlign: 'center',
+    color: 'grey',
   },
   performanceCategory: {
     marginTop: 30,
