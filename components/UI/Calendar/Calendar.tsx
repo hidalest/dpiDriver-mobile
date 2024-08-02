@@ -13,6 +13,8 @@ import {
   startOfYear,
   addWeeks as addWeeksDateFns,
 } from 'date-fns';
+import { startingWeekNumber } from '@/constants/Dates';
+import { getWeekNumber } from '@/utils/getWeekNumber';
 
 /**
  * Props for the Calendar component.
@@ -86,7 +88,9 @@ const Calendar = ({ onDateChange, isLoading, weekNumber }: CalendarProps) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.month}>{currentMonth}</Text>
+      <Text style={styles.month}>
+        {currentMonth} / Week #{getWeekNumber(currentDate)}
+      </Text>
       <View style={styles.week}>
         <Button title='<' onPress={handleMoveBack} disabled={isLoading} />
         {daysOfWeek.map((day) => (
