@@ -1,7 +1,6 @@
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
-  //TODO: check if we want this card type to show the performace
   container: {},
 
   heading: {
